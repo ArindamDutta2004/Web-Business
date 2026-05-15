@@ -1,0 +1,18 @@
+{
+  "name": "kinetic-orange",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kinetic Orange — Premium Software Agency Platform",
+  "scripts": {
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\" \"npm run dev:admin\"",
+    "build:client": "cd client && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "install:all": "cd server && npm install && cd ../client && npm install && cd ../admin && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

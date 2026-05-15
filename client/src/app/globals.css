@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   KINETIC ORANGE — BRUTALIST FUTURISTIC DESIGN SYSTEM
+   ═══════════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-kinetic: #FF4D00;
+  --color-kinetic-dark: #CC3D00;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-gray-100: #F5F5F5;
+  --color-gray-200: #E5E5E5;
+  --color-gray-300: #D4D4D4;
+  --color-gray-400: #A3A3A3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0A0A0A;
+
+  --font-archivo: 'Archivo Black', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-inter: 'Inter', sans-serif;
+}
+
+/* ─── Base Reset ─────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-inter);
+  background: var(--color-black);
+  color: var(--color-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── Selection ──────────────────────────────────────── */
+::selection {
+  background: var(--color-black);
+  color: var(--color-kinetic);
+}
+
+::-moz-selection {
+  background: var(--color-black);
+  color: var(--color-kinetic);
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-kinetic);
+}
+
+/* ─── Typography Classes ─────────────────────────────── */
+.font-display {
+  font-family: var(--font-archivo);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.font-technical {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.font-body {
+  font-family: var(--font-inter);
+}
+
+/* ─── Marquee ────────────────────────────────────────── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+/* ─── Circular Text Rotation ─────────────────────────── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+/* ─── Brutalist Borders ──────────────────────────────── */
+.border-brutal {
+  border: 2px solid var(--color-white);
+}
+
+.border-brutal-orange {
+  border: 2px solid var(--color-kinetic);
+}
+
+/* ─── Aggressive Hover ───────────────────────────────── */
+.hover-shift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-shift:hover {
+  transform: translateX(1rem);
+}
+
+/* ─── Page Transition ────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* ─── Loading Pulse ──────────────────────────────────── */
+@keyframes brutalist-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-brutal-pulse {
+  animation: brutalist-pulse 1.5s ease-in-out infinite;
+}
+
+/* ─── Responsive Typography ──────────────────────────── */
+@media (max-width: 768px) {
+  .font-display {
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
+}
