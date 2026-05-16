@@ -15,7 +15,7 @@ const settingsSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-settingsSchema.index({ key: 1 });
+// key already has unique: true which creates an index automatically
 settingsSchema.index({ category: 1 });
 
 // Static method to get a setting by key

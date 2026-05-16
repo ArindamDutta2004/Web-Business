@@ -1,37 +1,37 @@
 'use client';
 
 export default function DashboardSettingsPage() {
-  const inputClass = 'w-full bg-transparent border-2 border-white/20 px-4 py-3.5 font-body text-white text-sm placeholder:text-white/20 focus:border-kinetic focus:outline-none transition-colors';
+  const inputClass = 'ko-input';
 
   return (
     <div>
       <div className="mb-8">
-        <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[SETTINGS]</p>
+        <p className="ko-eyebrow mb-2">[SETTINGS]</p>
         <h1 className="font-display text-3xl text-white">ACCOUNT SETTINGS</h1>
       </div>
 
-      <div className="max-w-xl space-y-6">
-        <div className="border-2 border-white/10 p-6">
-          <h2 className="font-display text-lg text-white mb-6">CHANGE PASSWORD</h2>
+      <div className="max-w-2xl space-y-5">
+        <div className="ko-card">
+          <h2 className="font-display text-lg text-white mb-5">CHANGE PASSWORD</h2>
           <div className="space-y-5">
             <div>
-              <label className="font-technical text-[10px] text-white/50 tracking-widest mb-2 block">CURRENT PASSWORD</label>
+              <label className="ko-label">CURRENT PASSWORD</label>
               <input type="password" className={inputClass} placeholder="••••••••" />
             </div>
             <div>
-              <label className="font-technical text-[10px] text-white/50 tracking-widest mb-2 block">NEW PASSWORD</label>
+              <label className="ko-label">NEW PASSWORD</label>
               <input type="password" className={inputClass} placeholder="Min. 8 characters" />
             </div>
             <div>
-              <label className="font-technical text-[10px] text-white/50 tracking-widest mb-2 block">CONFIRM PASSWORD</label>
+              <label className="ko-label">CONFIRM PASSWORD</label>
               <input type="password" className={inputClass} placeholder="Confirm new password" />
             </div>
-            <button className="bg-kinetic text-black px-6 py-3.5 font-technical text-sm hover:bg-white transition-colors">UPDATE PASSWORD</button>
+            <button className="ko-button">UPDATE PASSWORD</button>
           </div>
         </div>
 
-        <div className="border-2 border-white/10 p-6">
-          <h2 className="font-display text-lg text-white mb-6">PREFERENCES</h2>
+        <div className="ko-card">
+          <h2 className="font-display text-lg text-white mb-5">PREFERENCES</h2>
           <div className="space-y-5">
             <label className="flex items-center justify-between cursor-pointer">
               <span className="font-technical text-[10px] text-white/50">EMAIL NOTIFICATIONS</span>
@@ -48,10 +48,10 @@ export default function DashboardSettingsPage() {
           </div>
         </div>
 
-        <div className="border-2 border-red-500/20 p-6">
+        <div className="ko-card border-red-500/20">
           <h2 className="font-display text-lg text-red-400 mb-2">DANGER ZONE</h2>
           <p className="font-body text-white/30 text-sm mb-4">Once deleted, your account cannot be recovered.</p>
-          <button className="border-2 border-red-500/30 text-red-400 px-6 py-3.5 font-technical text-sm hover:bg-red-500/10 transition-colors">DELETE ACCOUNT</button>
+          <button className="ko-button ko-button-outline border-red-500/30 text-red-400 hover:bg-red-500/10">DELETE ACCOUNT</button>
         </div>
       </div>
     </div>

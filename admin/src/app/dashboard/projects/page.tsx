@@ -18,30 +18,30 @@ const statusColor: Record<string, string> = {
 
 export default function AdminProjectsPage() {
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
+    <div className="admin-page">
+      <div className="admin-page-header">
         <div>
-          <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[MANAGEMENT]</p>
-          <h1 className="font-display text-3xl text-white">PROJECTS</h1>
+          <p className="admin-kicker">[MANAGEMENT]</p>
+          <h1 className="admin-title">PROJECTS</h1>
         </div>
-        <button className="bg-kinetic text-black px-5 py-2.5 font-technical text-[11px] flex items-center gap-2 hover:bg-white transition-colors">
+        <button className="admin-button">
           <Plus size={14} /> NEW PROJECT
         </button>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {PROJECTS.map((p) => (
-          <div key={p.title} className="border-2 border-white/10 p-6 hover:border-white/20 transition-colors">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+          <div key={p.title} className="admin-card">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 mb-5">
               <div className="flex-1">
                 <h3 className="font-display text-sm text-white">{p.title}</h3>
-                <p className="font-technical text-[10px] text-white/30 mt-1">CLIENT: {p.client} • BUDGET: {p.budget}</p>
+                <p className="font-technical text-[10px] text-white/30 mt-2">CLIENT: {p.client} • BUDGET: {p.budget}</p>
               </div>
-              <div className="flex items-center gap-3">
-                <span className={`font-technical text-[9px] px-2 py-0.5 border ${statusColor[p.status] || 'text-white/30 border-white/10'}`}>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className={`admin-badge ${statusColor[p.status] || 'text-white/30 border-white/10'}`}>
                   {p.status.toUpperCase().replace('-', ' ')}
                 </span>
-                <span className={`font-technical text-[9px] px-2 py-0.5 border ${
+                <span className={`admin-badge ${
                   p.priority === 'urgent' ? 'text-red-400 border-red-400/30' :
                   p.priority === 'high' ? 'text-kinetic border-kinetic/30' :
                   'text-white/30 border-white/10'
@@ -49,10 +49,10 @@ export default function AdminProjectsPage() {
                 <button className="text-white/20 hover:text-white"><MoreHorizontal size={16} /></button>
               </div>
             </div>
-            <div className="w-full h-1 bg-white/10">
-              <div className={`h-full ${p.status === 'completed' ? 'bg-green-500' : 'bg-kinetic'}`} style={{ width: `${p.progress}%` }} />
+            <div className="w-full h-1.5 bg-white/10 rounded-sm overflow-hidden">
+              <div className={`h-full rounded-sm ${p.status === 'completed' ? 'bg-green-500' : 'bg-kinetic'}`} style={{ width: `${p.progress}%` }} />
             </div>
-            <p className="font-technical text-[9px] text-white/30 mt-2">{p.progress}% COMPLETE</p>
+            <p className="font-technical text-[9px] text-white/30 mt-3">{p.progress}% COMPLETE</p>
           </div>
         ))}
       </div>

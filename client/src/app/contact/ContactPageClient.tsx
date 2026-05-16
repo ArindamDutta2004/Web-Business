@@ -42,32 +42,37 @@ export default function ContactPageClient() {
     }
   };
 
-  const inputClass = 'w-full bg-transparent border-2 border-white/20 px-4 py-3.5 font-body text-white text-sm placeholder:text-white/20 focus:border-kinetic focus:outline-none transition-colors duration-300';
-  const labelClass = 'font-technical text-[10px] text-white/50 tracking-widest mb-2 block';
-  const errorClass = 'font-technical text-[10px] text-kinetic mt-1';
+  const inputClass = 'ko-input';
+  const labelClass = 'ko-label';
+  const errorClass = 'ko-error';
 
   return (
-    <div className="pt-32 pb-24">
-      <section className="px-6 md:px-8 mb-20">
-        <div className="max-w-[1800px] mx-auto">
+    <div className="ko-page pb-20 md:pb-28">
+      <section className="pb-16 md:pb-24">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[GET IN TOUCH]</p>
+            <p className="ko-eyebrow">[GET IN TOUCH]</p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
-            <h1 className="font-display text-[10vw] md:text-[7vw] text-white leading-none mb-8">
+            <h1 className="ko-page-title text-white mb-8">
               LET&apos;S <span className="text-kinetic">TALK</span>
             </h1>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.2}>
+            <p className="ko-lead max-w-xl">
+              Have a project in mind? Fill out the form below and we&apos;ll get back to you within 24 hours.
+            </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      <section className="px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto grid lg:grid-cols-5 gap-16">
+      <section>
+        <div className="ko-container grid lg:grid-cols-5 gap-12 xl:gap-20">
           {/* Form */}
           <div className="lg:col-span-3">
             <RevealOnScroll>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
+                <div className="grid md:grid-cols-2 gap-5 md:gap-6">
                   <div>
                     <label className={labelClass}>NAME *</label>
                     <input {...register('name')} className={inputClass} placeholder="Your name" />
@@ -80,7 +85,7 @@ export default function ContactPageClient() {
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-5 md:gap-6">
                   <div>
                     <label className={labelClass}>PHONE</label>
                     <input {...register('phone')} className={inputClass} placeholder="+91 XXXX XXXXXX" />
@@ -97,7 +102,7 @@ export default function ContactPageClient() {
                   {errors.subject && <p className={errorClass}>{errors.subject.message}</p>}
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-5 md:gap-6">
                   <div>
                     <label className={labelClass}>SERVICE</label>
                     <select {...register('service')} className={`${inputClass} appearance-none`}>
@@ -131,7 +136,7 @@ export default function ContactPageClient() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full md:w-auto bg-kinetic text-black px-10 py-4 font-technical text-sm flex items-center justify-center gap-3 hover:bg-white transition-colors duration-300 disabled:opacity-50"
+                  className="ko-button disabled:opacity-50 mt-2"
                 >
                   {isSubmitting ? (
                     <span className="animate-brutal-pulse">SENDING...</span>
@@ -146,26 +151,26 @@ export default function ContactPageClient() {
           {/* Contact Info */}
           <div className="lg:col-span-2">
             <RevealOnScroll delay={0.2}>
-              <div className="space-y-8">
-                <div className="border-2 border-white/10 p-8">
-                  <MapPin className="text-kinetic mb-4" size={24} />
-                  <h3 className="font-display text-xl text-white mb-2">OFFICE</h3>
+              <div className="space-y-5 md:space-y-6">
+                <div className="ko-card">
+                  <MapPin className="text-kinetic mb-5" size={24} />
+                  <h3 className="font-display text-xl text-white mb-4">OFFICE</h3>
                   <p className="font-body text-white/40 text-sm leading-relaxed">
                     Kinetic Orange HQ<br/>
                     Bengaluru, Karnataka<br/>
                     India 560001
                   </p>
                 </div>
-                <div className="border-2 border-white/10 p-8">
-                  <Mail className="text-kinetic mb-4" size={24} />
-                  <h3 className="font-display text-xl text-white mb-2">EMAIL</h3>
+                <div className="ko-card">
+                  <Mail className="text-kinetic mb-5" size={22} />
+                  <h3 className="font-display text-xl text-white mb-4">EMAIL</h3>
                   <a href="mailto:hello@kineticorange.com" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
                     HELLO@KINETICORANGE.COM
                   </a>
                 </div>
-                <div className="border-2 border-white/10 p-8">
-                  <Phone className="text-kinetic mb-4" size={24} />
-                  <h3 className="font-display text-xl text-white mb-2">PHONE</h3>
+                <div className="ko-card">
+                  <Phone className="text-kinetic mb-5" size={22} />
+                  <h3 className="font-display text-xl text-white mb-4">PHONE</h3>
                   <a href="tel:+919876543210" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
                     +91 98765 43210
                   </a>

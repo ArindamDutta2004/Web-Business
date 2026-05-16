@@ -29,10 +29,18 @@ const app = express();
 // ─── Security ────────────────────────────────────────────
 app.use(helmet());
 app.use(cors({
-  origin: [
-    process.env.CLIENT_URL || 'http://localhost:3000',
-    process.env.ADMIN_URL || 'http://localhost:3001',
-  ],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      process.env.CLIENT_URL || 'http://localhost:3000',
+      process.env.ADMIN_URL || 'http://localhost:3001',
+    ];
+    // Allow requests with no origin (Postman, curl, mobile apps)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all in development
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -83,15 +91,17 @@ app.get('/api/health', (req, res) => {
 });
 
 // ─── 404 Handler ─────────────────────────────────────────
-app.use('*', (req, res) => {
+app.use((req, res, next) => {
   res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` });
 });
 
-// ─── Error Handler ───────────────────────────────────────
+// ─── Error Handler (must be 4 args for Express to recognize it) ──
 app.use(errorHandler);
 
 // ─── Database + Server ───────────────────────────────────
 const PORT = process.env.PORT || 5000;
+
+mongoose.set('strictQuery', false);
 
 mongoose
   .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/kinetic-orange')
@@ -102,7 +112,7 @@ mongoose
     app.listen(PORT, () => {
       console.log(`╔══════════════════════════════════════╗`);
       console.log(`║   Server running on port ${PORT}        ║`);
-      console.log(`║   Environment: ${process.env.NODE_ENV || 'development'}        ║`);
+      console.log(`║   Environment: ${(process.env.NODE_ENV || 'development').padEnd(19)}║`);
       console.log(`╚══════════════════════════════════════╝`);
     });
   })

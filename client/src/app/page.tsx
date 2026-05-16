@@ -25,34 +25,34 @@ const STATS = [
 // ─── Hero Section ────────────────────────────────────────
 function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-8 pt-24">
-      <div className="max-w-[1800px] mx-auto w-full">
+    <section className="relative min-h-[760px] sm:min-h-[820px] lg:min-h-screen flex flex-col justify-start lg:justify-center ko-hero-section">
+      <div className="ko-container w-full">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="font-technical text-[10px] md:text-xs text-kinetic mb-6 tracking-widest">
+          <p className="ko-eyebrow mb-8">
             [PREMIUM SOFTWARE AGENCY]
           </p>
         </motion.div>
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden mb-2">
           <motion.h1
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[14vw] md:text-[16vw] text-white leading-none"
+            className="ko-hero-title text-white"
           >
             WE BUILD
           </motion.h1>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden mb-2">
           <motion.h1
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[14vw] md:text-[16vw] text-kinetic leading-none"
+            className="ko-hero-title text-kinetic"
           >
             DIGITAL
           </motion.h1>
@@ -62,7 +62,7 @@ function HeroSection() {
             initial={{ y: '100%' }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-[14vw] md:text-[16vw] text-white leading-none"
+            className="ko-hero-title text-white"
           >
             FUTURES
           </motion.h1>
@@ -72,7 +72,7 @@ function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="font-body text-white/50 text-sm md:text-base max-w-lg mt-8 leading-relaxed"
+          className="ko-lead mt-10 md:mt-12 max-w-xl"
         >
           We craft premium web applications, AI-powered platforms, and brutal digital solutions
           that push boundaries and drive results.
@@ -87,7 +87,7 @@ function HeroSection() {
         className="absolute bottom-0 left-0 right-0"
       >
         <div className="h-[2px] bg-white/10 w-full" />
-        <div className="max-w-[1800px] mx-auto px-6 md:px-8 py-6 flex items-center justify-between">
+        <div className="ko-container py-5 md:py-6 flex items-center justify-between">
           <span className="font-technical text-[10px] text-white/40 hidden md:block">BASED IN INDIA</span>
           <div className="mx-auto md:mx-0">
             <ScrollIndicator />
@@ -106,20 +106,20 @@ function MarqueeSection() {
   const marqueeText = 'KINETIC ORANGE • BUILD DIFFERENT • PUSH BOUNDARIES • DIGITAL FUTURES • ';
 
   return (
-    <section className="py-12 bg-black overflow-hidden" style={{ transform: 'skewY(-2deg)' }}>
-      <div className="space-y-4">
+    <section className="py-8 md:py-12 bg-black overflow-hidden border-y border-white/5">
+      <div className="space-y-5 overflow-hidden">
         {/* Row 1 — Orange */}
-        <div className="flex whitespace-nowrap overflow-hidden">
+        <div className="flex whitespace-nowrap overflow-hidden h-12 sm:h-14 md:h-16 items-center">
           <div className="animate-marquee flex shrink-0">
             {[...Array(4)].map((_, i) => (
-              <span key={i} className="font-display text-[8vw] md:text-[10vw] text-kinetic mx-4 leading-none">
+              <span key={i} className="font-display text-3xl sm:text-4xl md:text-5xl text-kinetic mx-4 leading-[1.1]">
                 {marqueeText}
               </span>
             ))}
           </div>
           <div className="animate-marquee flex shrink-0" aria-hidden>
             {[...Array(4)].map((_, i) => (
-              <span key={i} className="font-display text-[8vw] md:text-[10vw] text-kinetic mx-4 leading-none">
+              <span key={i} className="font-display text-3xl sm:text-4xl md:text-5xl text-kinetic mx-4 leading-[1.1]">
                 {marqueeText}
               </span>
             ))}
@@ -127,17 +127,17 @@ function MarqueeSection() {
         </div>
 
         {/* Row 2 — White, reverse */}
-        <div className="flex whitespace-nowrap overflow-hidden">
+        <div className="flex whitespace-nowrap overflow-hidden h-9 sm:h-10 md:h-12 items-center">
           <div className="animate-marquee-reverse flex shrink-0">
             {[...Array(4)].map((_, i) => (
-              <span key={i} className="font-display text-[6vw] md:text-[8vw] text-white/20 mx-4 leading-none">
+              <span key={i} className="font-display text-xl sm:text-2xl md:text-3xl text-white/15 mx-4 leading-[1.1]">
                 {marqueeText}
               </span>
             ))}
           </div>
           <div className="animate-marquee-reverse flex shrink-0" aria-hidden>
             {[...Array(4)].map((_, i) => (
-              <span key={i} className="font-display text-[6vw] md:text-[8vw] text-white/20 mx-4 leading-none">
+              <span key={i} className="font-display text-xl sm:text-2xl md:text-3xl text-white/15 mx-4 leading-[1.1]">
                 {marqueeText}
               </span>
             ))}
@@ -151,31 +151,31 @@ function MarqueeSection() {
 // ─── Services Section ────────────────────────────────────
 function ServicesSection() {
   return (
-    <section className="bg-black px-6 md:px-8 py-24 md:py-32">
-      <div className="max-w-[1800px] mx-auto">
+    <section className="ko-section bg-black">
+      <div className="ko-container">
         <RevealOnScroll>
-          <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[WHAT WE DO]</p>
-          <h2 className="font-display text-[8vw] md:text-[5vw] text-white leading-none mb-16">
+          <p className="ko-eyebrow">[WHAT WE DO]</p>
+          <h2 className="ko-section-title text-white mb-12 md:mb-20">
             OUR SERVICES
           </h2>
         </RevealOnScroll>
 
-        <div className="border-t-2 border-white/10">
+        <div className="ko-list">
           {SERVICES.map((service, i) => (
             <RevealOnScroll key={service.index} delay={i * 0.05}>
               <Link
                 href="/services"
-                className="group flex items-center justify-between py-6 md:py-8 border-b-2 border-white/10 hover:bg-white/5 transition-all duration-300 px-2 md:px-4"
+                className="ko-list-row group flex items-center justify-between gap-5"
               >
-                <div className="flex items-start md:items-center gap-4 md:gap-8 flex-1">
-                  <span className="font-technical text-xs text-white/30 pt-1 md:pt-0">{service.index}</span>
-                  <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 flex-1">
-                    <h3 className="font-display text-[6vw] md:text-[4vw] lg:text-[3vw] text-white leading-none group-hover:translate-x-4 transition-transform duration-300">
+                <div className="flex items-start md:items-center gap-5 md:gap-10 flex-1">
+                  <span className="font-technical text-xs text-white/30 pt-1 md:pt-0 shrink-0">{service.index}</span>
+                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-10 flex-1 min-w-0">
+                    <h3 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white group-hover:translate-x-4 transition-transform duration-300">
                       {service.title}
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {service.tags.map((tag) => (
-                        <span key={tag} className="font-technical text-[9px] border border-white/20 text-white/50 px-3 py-1">
+                        <span key={tag} className="ko-chip">
                           {tag}
                         </span>
                       ))}
@@ -198,13 +198,13 @@ function ServicesSection() {
 // ─── Stats Section ───────────────────────────────────────
 function StatsSection() {
   return (
-    <section className="bg-kinetic px-6 md:px-8 py-20 md:py-24">
-      <div className="max-w-[1800px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+    <section className="bg-kinetic ko-section-compact">
+      <div className="ko-container grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
         {STATS.map((stat, i) => (
           <RevealOnScroll key={stat.label} delay={i * 0.1}>
             <div className="text-center md:text-left">
-              <div className="font-display text-[12vw] md:text-[5vw] text-black leading-none">{stat.value}</div>
-              <p className="font-technical text-[10px] text-black/60 mt-2 tracking-widest">{stat.label}</p>
+              <div className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl text-black leading-[1.1]">{stat.value}</div>
+              <p className="font-technical text-[10px] text-black/60 mt-4 tracking-widest">{stat.label}</p>
             </div>
           </RevealOnScroll>
         ))}
@@ -216,30 +216,30 @@ function StatsSection() {
 // ─── About Preview ───────────────────────────────────────
 function AboutPreview() {
   return (
-    <section className="bg-black px-6 md:px-8 py-24 md:py-32">
-      <div className="max-w-[1800px] mx-auto grid md:grid-cols-2 gap-12 md:gap-24 items-start">
+    <section className="bg-black ko-section">
+      <div className="ko-container ko-two-col items-start">
         <RevealOnScroll>
-          <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[WHO WE ARE]</p>
-          <h2 className="font-display text-[8vw] md:text-[4vw] text-white leading-none">
+          <p className="ko-eyebrow">[WHO WE ARE]</p>
+          <h2 className="ko-section-title text-white">
             NOT YOUR<br/>AVERAGE<br/>
             <span className="text-kinetic">AGENCY</span>
           </h2>
         </RevealOnScroll>
 
         <RevealOnScroll delay={0.2}>
-          <div className="space-y-6">
-            <p className="font-body text-white/60 text-lg leading-relaxed">
+          <div className="space-y-8 md:pt-10">
+            <p className="font-body text-white/60 text-base md:text-lg leading-relaxed">
               We are a collective of engineers, designers, and strategists who believe in the power
               of brutal simplicity. No fluff. No filler. Just aggressive execution and premium results.
             </p>
-            <p className="font-body text-white/40 leading-relaxed">
+            <p className="font-body text-white/40 text-sm md:text-base leading-relaxed">
               From AI-powered platforms to enterprise dashboards, we build digital products
               that dominate markets and define categories. Our approach is technical, our
               standards are ruthless, and our output is unforgettable.
             </p>
             <Link
               href="/about"
-              className="inline-flex items-center gap-3 font-technical text-xs text-kinetic border-b-2 border-kinetic pb-1 hover:text-white hover:border-white transition-colors duration-300 mt-4"
+              className="inline-flex items-center gap-3 font-technical text-xs text-kinetic border-b-2 border-kinetic pb-1 hover:text-white hover:border-white transition-colors duration-300 mt-2"
             >
               LEARN MORE ABOUT US <ArrowRight size={14} />
             </Link>
@@ -253,16 +253,16 @@ function AboutPreview() {
 // ─── CTA Section ─────────────────────────────────────────
 function CTASection() {
   return (
-    <section className="bg-black px-6 md:px-8 py-24 md:py-32 border-t-2 border-white/10">
-      <div className="max-w-[1800px] mx-auto text-center">
+    <section className="bg-black ko-section border-t border-white/10">
+      <div className="ko-container text-center">
         <RevealOnScroll>
-          <p className="font-technical text-xs text-kinetic mb-6 tracking-widest">[LET&apos;S WORK TOGETHER]</p>
-          <h2 className="font-display text-[10vw] md:text-[7vw] text-white leading-none mb-8">
+          <p className="ko-eyebrow mb-8">[LET&apos;S WORK TOGETHER]</p>
+          <h2 className="ko-cta-title text-white mb-10 md:mb-12 mx-auto">
             READY TO BUILD<br/>SOMETHING <span className="text-kinetic">BRUTAL?</span>
           </h2>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-3 bg-kinetic text-black px-10 py-5 font-technical text-sm hover:bg-white transition-colors duration-300"
+            className="ko-button"
           >
             START YOUR PROJECT <ArrowUpRight size={18} />
           </Link>

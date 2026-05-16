@@ -21,54 +21,54 @@ const PLANS = [
 
 export default function PricingPageClient() {
   return (
-    <div className="pt-32 pb-24">
-      <section className="px-6 md:px-8 mb-20">
-        <div className="max-w-[1800px] mx-auto">
+    <div className="ko-page pb-20 md:pb-28">
+      <section className="pb-14 md:pb-20">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[PRICING]</p>
+            <p className="ko-eyebrow">[PRICING]</p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
-            <h1 className="font-display text-[10vw] md:text-[7vw] text-white leading-none mb-8">
+            <h1 className="ko-page-title text-white mb-8">
               TRANSPARENT <span className="text-kinetic">PRICING</span>
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <p className="font-body text-white/50 text-lg max-w-2xl">No hidden fees. No surprises. Just aggressive value delivery.</p>
+            <p className="ko-lead">No hidden fees. No surprises. Just aggressive value delivery.</p>
           </RevealOnScroll>
         </div>
       </section>
 
-      <section className="px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto grid md:grid-cols-3 gap-0">
+      <section>
+        <div className="ko-container grid md:grid-cols-3 gap-5 md:gap-6">
           {PLANS.map((plan, i) => (
             <RevealOnScroll key={plan.name} delay={i * 0.1}>
-              <div className={`border-2 p-8 md:p-10 flex flex-col h-full ${
-                plan.featured ? 'border-kinetic bg-kinetic/5' : 'border-white/10'
+              <div className={`ko-card flex flex-col h-full ${
+                plan.featured ? 'border-kinetic bg-kinetic/5' : ''
               }`}>
                 <div className="mb-8">
                   <span className="font-technical text-[10px] text-kinetic tracking-widest">[{plan.tag}]</span>
                   <h3 className="font-display text-3xl md:text-4xl text-white mt-3">{plan.name}</h3>
                   <div className="mt-4 flex items-baseline gap-2">
-                    <span className="font-display text-[10vw] md:text-5xl text-white">{plan.price}</span>
+                    <span className="font-display text-4xl md:text-5xl text-white">{plan.price}</span>
                     <span className="font-technical text-[10px] text-white/30">/ {plan.period}</span>
                   </div>
                 </div>
 
-                <ul className="space-y-3 flex-1 mb-8">
+                <ul className="space-y-3.5 flex-1 mb-8">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-3">
                       <Check className="text-kinetic shrink-0 mt-0.5" size={14} />
-                      <span className="font-body text-sm text-white/60">{f}</span>
+                      <span className="font-body text-sm text-white/60 leading-relaxed">{f}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link
                   href="/contact"
-                  className={`w-full py-4 font-technical text-sm flex items-center justify-center gap-2 transition-colors duration-300 ${
+                  className={`ko-button w-full ${
                     plan.featured
-                      ? 'bg-kinetic text-black hover:bg-white'
-                      : 'border-2 border-white/20 text-white hover:border-kinetic hover:text-kinetic'
+                      ? ''
+                      : 'ko-button-outline'
                   }`}
                 >
                   GET STARTED <ArrowUpRight size={14} />
@@ -79,15 +79,17 @@ export default function PricingPageClient() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 mt-24">
-        <div className="max-w-[1800px] mx-auto border-2 border-white/10 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <section className="mt-16 md:mt-20">
+        <div className="ko-container">
+          <div className="ko-card flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div>
-            <h3 className="font-display text-2xl md:text-3xl text-white">NEED SOMETHING CUSTOM?</h3>
-            <p className="font-body text-white/40 text-sm mt-2">Let&apos;s discuss your unique requirements and build a tailored solution.</p>
+            <h3 className="font-display text-2xl md:text-3xl text-white mb-3">NEED SOMETHING CUSTOM?</h3>
+            <p className="font-body text-white/40 text-sm leading-relaxed">Let&apos;s discuss your unique requirements and build a tailored solution.</p>
           </div>
-          <Link href="/contact" className="bg-white text-black px-8 py-4 font-technical text-sm hover:bg-kinetic transition-colors shrink-0">
+          <Link href="/contact" className="ko-button bg-white text-black hover:bg-kinetic shrink-0">
             SCHEDULE A CALL
           </Link>
+          </div>
         </div>
       </section>
     </div>

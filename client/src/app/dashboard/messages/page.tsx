@@ -13,23 +13,23 @@ export default function MessagesPage() {
   return (
     <div>
       <div className="mb-8">
-        <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[COMMUNICATION]</p>
+        <p className="ko-eyebrow mb-2">[COMMUNICATION]</p>
         <h1 className="font-display text-3xl text-white">MESSAGES</h1>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {messages.map((msg, i) => (
-          <div key={i} className={`border-2 p-6 cursor-pointer transition-all hover:border-kinetic/30 ${
+          <div key={i} className={`ko-card p-5 md:p-6 cursor-pointer ${
             msg.unread ? 'border-kinetic/20 bg-kinetic/5' : 'border-white/10'
           }`}>
             <div className="flex items-start justify-between gap-4">
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-4 min-w-0">
                 <div className="w-10 h-10 bg-white/10 flex items-center justify-center shrink-0">
                   <MessageSquare size={16} className={msg.unread ? 'text-kinetic' : 'text-white/30'} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="font-display text-sm text-white">{msg.from}</p>
-                  <p className="font-body text-sm text-white/40 mt-1">{msg.subject}</p>
+                  <p className="font-body text-sm text-white/40 mt-1 break-words">{msg.subject}</p>
                 </div>
               </div>
               <span className="font-technical text-[9px] text-white/20 shrink-0">{msg.time}</span>

@@ -27,53 +27,53 @@ const SERVICES = [
 
 export default function ServicesPageClient() {
   return (
-    <div className="pt-32 pb-24">
-      <section className="px-6 md:px-8 mb-20">
-        <div className="max-w-[1800px] mx-auto">
+    <div className="ko-page">
+      <section className="pb-16 md:pb-24">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[OUR SERVICES]</p>
+            <p className="ko-eyebrow">[OUR SERVICES]</p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
-            <h1 className="font-display text-[10vw] md:text-[7vw] text-white leading-none mb-8">
+            <h1 className="ko-page-title text-white mb-8 md:mb-10">
               WHAT WE <span className="text-kinetic">BUILD</span>
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <p className="font-body text-white/50 text-lg max-w-2xl leading-relaxed">
+            <p className="ko-lead">
               Every service is delivered with production-grade quality, aggressive timelines, and obsessive attention to detail.
             </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      <section className="px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto space-y-0">
+      <section className="pb-20 md:pb-28">
+        <div className="ko-container">
           {SERVICES.map((service, i) => (
             <RevealOnScroll key={service.index} delay={i * 0.05}>
-              <div className="border-t-2 border-white/10 py-12 md:py-16 group">
-                <div className="flex flex-col md:flex-row gap-8 md:gap-16">
-                  <div className="flex items-start gap-4 md:w-1/2">
-                    <span className="font-technical text-xs text-kinetic">[{service.index}]</span>
-                    <div>
-                      <div className="flex items-center gap-4 mb-4">
+              <div className="ko-list-row border-t border-white/10 group">
+                <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+                  <div className="flex items-start gap-5">
+                    <span className="font-technical text-xs text-kinetic mt-1">[{service.index}]</span>
+                    <div className="min-w-0">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 mb-6">
                         <service.icon className="text-kinetic" size={28} strokeWidth={1.5} />
-                        <h2 className="font-display text-[7vw] md:text-[3vw] text-white leading-none">
+                        <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-white">
                           {service.title}
                         </h2>
                       </div>
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-2.5 mb-7">
                         {service.tags.map((tag) => (
-                          <span key={tag} className="font-technical text-[9px] border border-white/20 text-white/50 px-3 py-1">{tag}</span>
+                          <span key={tag} className="ko-chip">{tag}</span>
                         ))}
                       </div>
-                      <p className="font-body text-white/40 leading-relaxed">{service.desc}</p>
+                      <p className="font-body text-white/40 leading-relaxed text-[15px]">{service.desc}</p>
                     </div>
                   </div>
-                  <div className="md:w-1/2 md:pl-8">
-                    <p className="font-technical text-[10px] text-white/30 mb-4 tracking-widest">KEY FEATURES</p>
-                    <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <p className="font-technical text-[10px] text-white/30 mb-6 tracking-widest">KEY FEATURES</p>
+                    <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                       {service.features.map((f) => (
-                        <div key={f} className="border border-white/10 px-4 py-3 font-technical text-[10px] text-white/60 hover:border-kinetic/50 hover:text-kinetic transition-all duration-300">
+                        <div key={f} className="ko-card p-4 md:p-5 font-technical text-[10px] text-white/60 hover:border-kinetic/50 hover:text-kinetic">
                           {f}
                         </div>
                       ))}
@@ -86,12 +86,12 @@ export default function ServicesPageClient() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 mt-16 bg-kinetic">
-        <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <h2 className="font-display text-[8vw] md:text-[4vw] text-black leading-none">
+      <section className="ko-section-compact bg-kinetic">
+        <div className="ko-container flex flex-col md:flex-row md:items-center justify-between gap-10">
+          <h2 className="ko-cta-title text-black">
             HAVE A PROJECT IN MIND?
           </h2>
-          <Link href="/contact" className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 font-technical text-sm hover:bg-gray-900 transition-colors shrink-0">
+          <Link href="/contact" className="ko-button ko-button-dark shrink-0">
             GET A QUOTE <ArrowUpRight size={16} />
           </Link>
         </div>

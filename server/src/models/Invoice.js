@@ -44,6 +44,6 @@ invoiceSchema.pre('save', async function (next) {
 });
 
 invoiceSchema.index({ client: 1, status: 1 });
-invoiceSchema.index({ invoiceNumber: 1 });
+// invoiceNumber already has unique: true which creates an index automatically
 
 module.exports = mongoose.model('Invoice', invoiceSchema);

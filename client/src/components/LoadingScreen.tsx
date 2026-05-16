@@ -37,7 +37,7 @@ export default function LoadingScreen() {
             <div className="w-16 h-16 bg-kinetic mx-auto mb-8 flex items-center justify-center">
               <span className="font-display text-black text-2xl">K</span>
             </div>
-            <div className="font-display text-[20vw] md:text-[12vw] text-white leading-none">
+            <div className="font-display text-7xl sm:text-8xl md:text-9xl text-white leading-none">
               {count}
             </div>
             <div className="w-48 h-[2px] bg-white/10 mx-auto mt-8">

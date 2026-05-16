@@ -35,27 +35,27 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex bg-gray-950">
       {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 bg-black border-r-2 border-white/10 fixed top-0 bottom-0 overflow-y-auto">
-        <div className="px-4 py-5 border-b-2 border-white/10">
+      <aside className="hidden lg:flex flex-col w-72 bg-black/95 border-r border-white/10 fixed top-0 bottom-0 overflow-y-auto">
+        <div className="px-6 py-6 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-kinetic flex items-center justify-center shrink-0">
-              <Shield className="text-black" size={16} />
+            <div className="w-10 h-10 bg-kinetic flex items-center justify-center shrink-0">
+              <Shield className="text-black" size={18} />
             </div>
             <div className="min-w-0">
               <p className="font-technical text-[9px] text-kinetic tracking-widest">KO ADMIN</p>
-              <p className="font-technical text-[9px] text-white/30 truncate">{admin?.email}</p>
+              <p className="font-technical text-[9px] text-white/30 truncate mt-1">{admin?.email}</p>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 px-4 py-5 space-y-1.5">
           {LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`flex items-center gap-3 px-3 py-2.5 text-[11px] font-[Space_Mono] tracking-wider transition-all duration-200 ${
+              className={`flex items-center gap-3.5 px-4 py-3.5 text-[11px] font-technical transition-all duration-200 ${
                 pathname === link.href ? 'bg-kinetic text-black' : 'text-white/40 hover:text-white hover:bg-white/5'
               }`}
             >
@@ -65,15 +65,57 @@ export default function AdminDashboardLayout({ children }: { children: React.Rea
           ))}
         </nav>
 
-        <div className="p-4 border-t-2 border-white/10">
-          <button onClick={() => { logout(); router.push('/'); }} className="flex items-center gap-3 px-3 py-2.5 text-[11px] font-[Space_Mono] text-white/30 hover:text-kinetic transition-colors w-full">
+        <div className="px-4 py-5 border-t border-white/10">
+          <button onClick={() => { logout(); router.push('/'); }} className="flex items-center gap-3.5 px-4 py-3.5 text-[11px] font-technical text-white/30 hover:text-kinetic transition-colors w-full">
             <LogOut size={15} /> LOGOUT
           </button>
         </div>
       </aside>
 
+      {/* Mobile Header */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-black/95 backdrop-blur border-b border-white/10">
+        <div className="flex items-center justify-between gap-4 px-4 py-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-9 h-9 bg-kinetic flex items-center justify-center shrink-0">
+              <Shield className="text-black" size={16} />
+            </div>
+            <div className="min-w-0">
+              <p className="font-technical text-[9px] text-kinetic">KO ADMIN</p>
+              <p className="font-technical text-[9px] text-white/30 truncate">{admin?.email}</p>
+            </div>
+          </div>
+          <button
+            onClick={() => { logout(); router.push('/'); }}
+            className="w-10 h-10 border border-white/10 flex items-center justify-center text-white/45 hover:text-kinetic"
+            aria-label="Logout"
+          >
+            <LogOut size={16} />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Navigation */}
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-black/95 backdrop-blur border-t border-white/10 overflow-x-auto">
+        <div className="flex min-w-max">
+          {LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`flex min-w-[76px] flex-col items-center gap-1 px-3 py-3 ${
+                pathname === link.href ? 'text-kinetic' : 'text-white/35'
+              }`}
+            >
+              <link.icon size={17} />
+              <span className="font-technical text-[8px]">{link.label}</span>
+            </Link>
+          ))}
+        </div>
+      </nav>
+
       {/* Content */}
-      <main className="flex-1 lg:ml-60 p-6 md:p-8 min-h-screen">{children}</main>
+      <main className="flex-1 lg:ml-72 px-4 sm:px-6 lg:px-10 xl:px-12 pt-24 lg:pt-10 pb-28 lg:pb-12 min-h-screen">
+        {children}
+      </main>
     </div>
   );
 }

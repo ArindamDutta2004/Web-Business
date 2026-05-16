@@ -14,41 +14,46 @@ const POSTS = [
 
 export default function BlogPageClient() {
   return (
-    <div className="pt-32 pb-24">
-      <section className="px-6 md:px-8 mb-20">
-        <div className="max-w-[1800px] mx-auto">
+    <div className="ko-page pb-20 md:pb-28">
+      <section className="pb-16 md:pb-24">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[INSIGHTS]</p>
+            <p className="ko-eyebrow">[INSIGHTS]</p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
-            <h1 className="font-display text-[10vw] md:text-[7vw] text-white leading-none mb-8">
+            <h1 className="ko-page-title text-white mb-8">
               THE <span className="text-kinetic">BLOG</span>
             </h1>
+          </RevealOnScroll>
+          <RevealOnScroll delay={0.2}>
+            <p className="ko-lead max-w-xl">
+              Deep dives into engineering, design, and the future of digital products.
+            </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      <section className="px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto">
+      <section>
+        <div className="ko-container">
           {POSTS.map((post, i) => (
             <RevealOnScroll key={post.title} delay={i * 0.05}>
-              <article className="border-t-2 border-white/10 py-10 md:py-12 group cursor-pointer hover:bg-white/[0.02] transition-all duration-300 px-2">
-                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <article className="ko-list-row border-t border-white/10 group cursor-pointer">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
                   <div className="flex-1">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-5 mb-6">
                       <span className="font-technical text-[10px] text-kinetic">{post.category}</span>
                       <span className="font-technical text-[10px] text-white/20">{post.date}</span>
                     </div>
-                    <h2 className="font-display text-[5vw] md:text-[2.5vw] text-white leading-none group-hover:translate-x-4 transition-transform duration-300 mb-4">
+                    <h2 className="font-display text-2xl md:text-3xl text-white group-hover:translate-x-2 md:group-hover:translate-x-4 transition-transform duration-300 mb-5 max-w-4xl">
                       {post.title}
                     </h2>
-                    <p className="font-body text-white/40 text-sm max-w-xl leading-relaxed">{post.excerpt}</p>
-                    <div className="flex items-center gap-6 mt-4">
-                      <span className="font-technical text-[10px] text-white/20 flex items-center gap-1"><Clock size={12} /> {post.readTime} MIN</span>
-                      <span className="font-technical text-[10px] text-white/20 flex items-center gap-1"><Eye size={12} /> {post.views}</span>
+                    <p className="font-body text-white/40 text-sm max-w-xl leading-relaxed mb-6">{post.excerpt}</p>
+                    <div className="flex items-center gap-6">
+                      <span className="font-technical text-[10px] text-white/20 flex items-center gap-1.5"><Clock size={12} /> {post.readTime} MIN</span>
+                      <span className="font-technical text-[10px] text-white/20 flex items-center gap-1.5"><Eye size={12} /> {post.views}</span>
                     </div>
                   </div>
-                  <ArrowUpRight className="text-white/0 group-hover:text-kinetic group-hover:rotate-45 transition-all duration-300 shrink-0" size={28} />
+                  <ArrowUpRight className="text-white/0 group-hover:text-kinetic group-hover:rotate-45 transition-all duration-300 shrink-0 mt-2" size={28} />
                 </div>
               </article>
             </RevealOnScroll>

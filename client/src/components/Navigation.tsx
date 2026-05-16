@@ -32,52 +32,48 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => { setIsOpen(false); }, [pathname]);
-
   return (
     <>
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-8 py-4 transition-all duration-300 ${
-          isScrolled ? 'py-3' : 'py-6'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled ? 'py-3 bg-black/92 backdrop-blur-md border-b border-white/10' : 'py-4 sm:py-5'
         }`}
       >
-        <div className="max-w-[1800px] mx-auto flex items-center justify-between">
+        <div className="ko-container flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="relative z-50 group">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-kinetic flex items-center justify-center">
                 <span className="font-display text-black text-lg">K</span>
               </div>
-              <span className="font-technical text-xs text-white hidden md:block tracking-widest">
+              <span className="font-technical text-xs text-white hidden md:block tracking-widest leading-tight">
                 KINETIC<br/>ORANGE
               </span>
             </div>
           </Link>
 
-          {/* Center Nav Pill — Desktop */}
-          <div className="hidden lg:flex items-center">
-            <div className="flex items-center bg-black border border-white/20 rounded-full px-2 py-1.5 gap-1">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`font-technical text-[11px] px-4 py-2 rounded-full transition-all duration-300 ${
-                    pathname === link.href
-                      ? 'bg-white text-black'
-                      : 'text-white hover:bg-white hover:text-black'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+          {/* Center Nav — Desktop */}
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-technical text-[10px] transition-all duration-300 whitespace-nowrap ${
+                  pathname === link.href
+                    ? 'text-kinetic'
+                    : 'text-white/60 hover:text-white'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           {/* Right — Social + CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-5">
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.label}
@@ -90,7 +86,7 @@ export default function Navigation() {
             ))}
             <Link
               href="/contact"
-              className="font-technical text-[11px] bg-kinetic text-black px-5 py-2.5 hover:bg-white transition-colors duration-300 flex items-center gap-2"
+              className="ko-button min-h-0 px-5 py-3 text-[11px]"
             >
               START PROJECT <ArrowUpRight size={14} />
             </Link>
@@ -115,9 +111,9 @@ export default function Navigation() {
             animate={{ clipPath: 'circle(150% at calc(100% - 40px) 40px)' }}
             exit={{ clipPath: 'circle(0% at calc(100% - 40px) 40px)' }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-black flex flex-col justify-center px-8"
+            className="fixed inset-0 z-40 bg-black flex flex-col justify-center px-6 sm:px-10"
           >
-            <div className="space-y-2">
+            <div className="space-y-3 max-w-3xl">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.href}
@@ -127,7 +123,8 @@ export default function Navigation() {
                 >
                   <Link
                     href={link.href}
-                    className={`font-display text-[12vw] md:text-[8vw] leading-none block hover:text-kinetic transition-colors duration-300 ${
+                    onClick={() => setIsOpen(false)}
+                    className={`font-display text-5xl sm:text-6xl md:text-7xl leading-none block py-1 hover:text-kinetic transition-colors duration-300 ${
                       pathname === link.href ? 'text-kinetic' : 'text-white'
                     }`}
                   >
@@ -141,7 +138,7 @@ export default function Navigation() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="mt-12 flex gap-6"
+              className="mt-14 flex gap-6"
             >
               {SOCIAL_LINKS.map((social) => (
                 <a key={social.label} href={social.href} className="text-white/60 hover:text-kinetic transition-colors">
@@ -158,7 +155,8 @@ export default function Navigation() {
             >
               <Link
                 href="/contact"
-                className="font-technical text-xs border-2 border-kinetic text-kinetic px-6 py-3 inline-block hover:bg-kinetic hover:text-black transition-all duration-300"
+                onClick={() => setIsOpen(false)}
+                className="ko-button ko-button-outline border-kinetic text-kinetic w-auto"
               >
                 START A PROJECT
               </Link>

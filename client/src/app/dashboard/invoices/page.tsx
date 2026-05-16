@@ -10,12 +10,13 @@ export default function InvoicesPage() {
   return (
     <div>
       <div className="mb-8">
-        <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[BILLING]</p>
+        <p className="ko-eyebrow mb-2">[BILLING]</p>
         <h1 className="font-display text-3xl text-white">INVOICES</h1>
       </div>
 
-      <div className="border-2 border-white/10">
-        <div className="hidden md:grid grid-cols-5 gap-4 px-6 py-3.5 border-b-2 border-white/10">
+      <div className="border border-white/10 overflow-x-auto bg-white/[0.012]">
+        <div className="min-w-[760px]">
+        <div className="grid grid-cols-5 gap-4 px-5 py-3 border-b border-white/10">
           {['INVOICE', 'PROJECT', 'AMOUNT', 'STATUS', 'DATE'].map((h) => (
             <span key={h} className="font-technical text-[10px] text-white/30">{h}</span>
           ))}
@@ -25,7 +26,7 @@ export default function InvoicesPage() {
             <span className="font-technical text-xs text-kinetic">{inv.id}</span>
             <span className="font-body text-sm text-white/60">{inv.project}</span>
             <span className="font-display text-sm text-white">{inv.amount}</span>
-            <span className={`font-technical text-[10px] px-3 py-1 border self-start w-fit ${
+            <span className={`ko-chip self-start w-fit ${
               inv.status === 'PAID' ? 'border-green-500 text-green-500' :
               inv.status === 'PENDING' ? 'border-yellow-500 text-yellow-500' :
               'border-white/20 text-white/30'
@@ -33,6 +34,7 @@ export default function InvoicesPage() {
             <span className="font-technical text-[10px] text-white/30">{inv.date}</span>
           </div>
         ))}
+        </div>
       </div>
     </div>
   );

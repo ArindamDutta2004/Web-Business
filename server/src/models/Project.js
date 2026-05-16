@@ -66,6 +66,6 @@ projectSchema.pre('save', function (next) {
 });
 
 projectSchema.index({ status: 1, client: 1 });
-projectSchema.index({ slug: 1 });
+// slug already has unique: true which creates an index automatically
 
 module.exports = mongoose.model('Project', projectSchema);

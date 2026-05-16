@@ -12,25 +12,25 @@ export default function NotificationsPage() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
         <div>
-          <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[ALERTS]</p>
+          <p className="ko-eyebrow mb-2">[ALERTS]</p>
           <h1 className="font-display text-3xl text-white">NOTIFICATIONS</h1>
         </div>
-        <button className="font-technical text-[10px] text-white/30 hover:text-kinetic transition-colors flex items-center gap-2 border border-white/10 px-4 py-2.5">
+        <button className="ko-button ko-button-outline w-auto text-[10px]">
           <Check size={12} /> MARK ALL READ
         </button>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4">
         {notifications.map((n, i) => (
-          <div key={i} className={`border-2 p-6 transition-all ${n.unread ? 'border-kinetic/20 bg-kinetic/5' : 'border-white/10'}`}>
+          <div key={i} className={`ko-card p-5 md:p-6 ${n.unread ? 'border-kinetic/20 bg-kinetic/5' : 'border-white/10'}`}>
             <div className="flex items-start gap-4">
               <div className={`w-8 h-8 flex items-center justify-center shrink-0 ${n.unread ? 'bg-kinetic' : 'bg-white/10'}`}>
                 <Bell size={14} className={n.unread ? 'text-black' : 'text-white/30'} />
               </div>
-              <div className="flex-1">
-                <div className="flex items-start justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4">
                   <h3 className="font-display text-sm text-white">{n.title}</h3>
                   <span className="font-technical text-[9px] text-white/20 shrink-0">{n.time}</span>
                 </div>

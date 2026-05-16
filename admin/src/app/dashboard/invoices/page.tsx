@@ -9,22 +9,24 @@ export default function InvoicesAdminPage() {
   ];
 
   return (
-    <div>
-      <div className="mb-8">
-        <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[BILLING]</p>
-        <h1 className="font-display text-3xl text-white">INVOICES</h1>
+    <div className="admin-page">
+      <div className="admin-page-header">
+        <div>
+          <p className="admin-kicker">[BILLING]</p>
+          <h1 className="admin-title">INVOICES</h1>
+        </div>
       </div>
 
-      <div className="border-2 border-white/10">
+      <div className="admin-list">
         {invoices.map((inv) => (
-          <div key={inv.id} className="flex items-center justify-between px-6 py-4 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors">
-            <div className="flex items-center gap-6">
+          <div key={inv.id} className="admin-list-row flex flex-col md:flex-row md:items-center justify-between gap-5">
+            <div className="flex flex-wrap items-center gap-4 md:gap-8">
               <span className="font-technical text-xs text-kinetic">{inv.id}</span>
               <span className="text-sm text-white/60">{inv.client}</span>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4 md:gap-6">
               <span className="font-display text-sm text-white">{inv.amount}</span>
-              <span className={`font-technical text-[9px] px-2 py-0.5 border ${
+              <span className={`admin-badge ${
                 inv.status === 'paid' ? 'text-green-500 border-green-500/30' :
                 inv.status === 'overdue' ? 'text-red-400 border-red-400/30' :
                 inv.status === 'sent' ? 'text-blue-400 border-blue-400/30' :

@@ -16,7 +16,7 @@ export default function ScrollIndicator() {
             d="M 72, 72 m -58, 0 a 58,58 0 1,1 116,0 a 58,58 0 1,1 -116,0"
           />
         </defs>
-        <text className="fill-white" style={{ fontFamily: 'Space Mono', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+        <text className="fill-white" style={{ fontFamily: 'Space Mono', fontSize: '9px', textTransform: 'uppercase', letterSpacing: 0 }}>
           <textPath href="#circlePath">{text}</textPath>
         </text>
       </svg>

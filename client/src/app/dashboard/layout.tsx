@@ -39,20 +39,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!isAuthenticated) return null;
 
   return (
-    <div className="pt-20 min-h-screen flex">
+    <div className="pt-20 min-h-screen flex bg-black">
       {/* Sidebar */}
-      <aside className="hidden lg:flex flex-col w-60 border-r-2 border-white/10 p-4 fixed top-20 bottom-0 overflow-y-auto">
-        <div className="mb-6">
+      <aside className="hidden lg:flex flex-col w-64 border-r border-white/10 fixed top-20 bottom-0 overflow-y-auto bg-black/80 backdrop-blur">
+        <div className="px-5 py-5 border-b border-white/5">
           <p className="font-technical text-[10px] text-kinetic tracking-widest mb-1">[DASHBOARD]</p>
           <p className="font-body text-sm text-white/50">Welcome, {user?.firstName}</p>
         </div>
 
-        <nav className="space-y-1 flex-1">
+        <nav className="flex-1 p-4 space-y-1.5">
           {SIDEBAR_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`flex items-center gap-3 px-3 py-2.5 font-technical text-[11px] transition-all duration-200 ${
+              className={`flex items-center gap-3 px-4 py-3.5 font-technical text-[11px] transition-all duration-200 ${
                 pathname === link.href
                   ? 'bg-kinetic text-black'
                   : 'text-white/50 hover:text-white hover:bg-white/5'
@@ -64,10 +64,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           ))}
         </nav>
 
-        <div className="pt-4 border-t-2 border-white/10">
+        <div className="p-4 border-t border-white/10">
           <button
             onClick={() => { logout(); router.push('/'); }}
-            className="flex items-center gap-3 px-3 py-2.5 font-technical text-[11px] text-white/30 hover:text-kinetic transition-colors"
+            className="flex items-center gap-3 px-4 py-3 font-technical text-[11px] text-white/30 hover:text-kinetic transition-colors w-full"
           >
             <LogOut size={15} /> LOGOUT
           </button>
@@ -75,12 +75,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Mobile nav */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-black border-t-2 border-white/10 flex overflow-x-auto">
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-black/95 backdrop-blur border-t border-white/10 flex overflow-x-auto">
         {SIDEBAR_LINKS.slice(0, 5).map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            className={`flex flex-col items-center gap-1 px-4 py-3 flex-1 min-w-[64px] ${
+            className={`flex flex-col items-center gap-1 px-4 py-3.5 flex-1 min-w-[64px] ${
               pathname === link.href ? 'text-kinetic' : 'text-white/30'
             }`}
           >
@@ -94,9 +94,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex-1 lg:ml-60 p-6 md:p-8 pb-24 lg:pb-8"
+        className="flex-1 lg:ml-64 px-5 sm:px-6 lg:px-10 py-6 md:py-8 lg:py-10 pb-24 lg:pb-10"
       >
-        {children}
+        <div className="w-full max-w-6xl mx-auto">{children}</div>
       </motion.div>
     </div>
   );

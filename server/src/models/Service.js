@@ -33,7 +33,7 @@ serviceSchema.pre('save', function (next) {
   next();
 });
 
-serviceSchema.index({ slug: 1 });
+// slug already has unique: true which creates an index automatically
 serviceSchema.index({ isActive: 1, order: 1 });
 
 module.exports = mongoose.model('Service', serviceSchema);

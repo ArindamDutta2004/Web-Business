@@ -15,46 +15,46 @@ export default function UsersPage() {
   const [search, setSearch] = useState('');
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
+    <div className="admin-page">
+      <div className="admin-page-header">
         <div>
-          <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[MANAGEMENT]</p>
-          <h1 className="font-display text-3xl text-white">USERS</h1>
+          <p className="admin-kicker">[MANAGEMENT]</p>
+          <h1 className="admin-title">USERS</h1>
         </div>
-        <button className="bg-kinetic text-black px-5 py-2.5 font-technical text-[11px] flex items-center gap-2 hover:bg-white transition-colors">
+        <button className="admin-button">
           <Plus size={14} /> ADD USER
         </button>
       </div>
 
       <div className="mb-6">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20" size={16} />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-white/20" size={16} />
           <input
             value={search} onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-transparent border-2 border-white/20 pl-12 pr-4 py-3.5 font-body text-sm text-white placeholder:text-white/20 focus:border-kinetic focus:outline-none transition-colors"
+            className="admin-input pl-14"
             placeholder="Search users..."
           />
         </div>
       </div>
 
-      <div className="border-2 border-white/10 overflow-x-auto">
-        <table className="w-full">
+      <div className="admin-table-wrap">
+        <table className="admin-table">
           <thead>
-            <tr className="border-b-2 border-white/10">
+            <tr>
               {['NAME', 'EMAIL', 'ROLE', 'STATUS', 'JOINED', ''].map((h) => (
-                <th key={h} className="text-left px-6 py-3.5 font-technical text-[10px] text-white/30">{h}</th>
+                <th key={h}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {USERS.filter((u) => u.name.toLowerCase().includes(search.toLowerCase())).map((user) => (
-              <tr key={user.id} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
-                <td className="px-6 py-4 font-display text-sm text-white">{user.name}</td>
-                <td className="px-6 py-4 text-sm text-white/50">{user.email}</td>
-                <td className="px-6 py-4"><span className="font-technical text-[9px] text-kinetic border border-kinetic/30 px-2 py-0.5">{user.role.toUpperCase()}</span></td>
-                <td className="px-6 py-4"><span className={`font-technical text-[9px] px-2 py-0.5 border ${user.status === 'active' ? 'text-green-500 border-green-500/30' : 'text-white/30 border-white/10'}`}>{user.status.toUpperCase()}</span></td>
-                <td className="px-6 py-4 font-technical text-[10px] text-white/30">{user.joined}</td>
-                <td className="px-6 py-4"><button className="text-white/20 hover:text-white"><MoreHorizontal size={16} /></button></td>
+              <tr key={user.id}>
+                <td className="font-display text-sm text-white">{user.name}</td>
+                <td className="text-sm text-white/50">{user.email}</td>
+                <td><span className="admin-badge text-kinetic border-kinetic/30">{user.role.toUpperCase()}</span></td>
+                <td><span className={`admin-badge ${user.status === 'active' ? 'text-green-500 border-green-500/30' : 'text-white/30 border-white/10'}`}>{user.status.toUpperCase()}</span></td>
+                <td className="font-technical text-[10px] text-white/30">{user.joined}</td>
+                <td><button className="text-white/20 hover:text-white p-1"><MoreHorizontal size={16} /></button></td>
               </tr>
             ))}
           </tbody>

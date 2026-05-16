@@ -24,18 +24,18 @@ export default function Footer() {
   return (
     <footer className="bg-black border-t-2 border-white/10">
       {/* CTA Banner */}
-      <div className="border-b-2 border-white/10 px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto py-16 md:py-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+      <div className="border-b border-white/10">
+        <div className="ko-container py-16 md:py-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-10 md:gap-14">
           <div>
-            <p className="font-technical text-xs text-kinetic mb-4">[READY TO BUILD?]</p>
-            <h2 className="font-display text-[10vw] md:text-[6vw] text-white leading-none">
+            <p className="ko-eyebrow">[READY TO BUILD?]</p>
+            <h2 className="ko-cta-title text-white">
               LET&apos;S CREATE<br/>SOMETHING<br/>
               <span className="text-kinetic">BRUTAL</span>
             </h2>
           </div>
           <Link
             href="/contact"
-            className="group flex items-center gap-3 bg-kinetic text-black px-8 py-4 font-technical text-sm hover:bg-white transition-colors duration-300 shrink-0"
+            className="ko-button group shrink-0"
           >
             START PROJECT
             <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" size={20} />
@@ -44,15 +44,15 @@ export default function Footer() {
       </div>
 
       {/* Links Grid */}
-      <div className="px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto py-16 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <div className="ko-container py-14 md:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-kinetic flex items-center justify-center">
+            <div className="flex items-center gap-3 mb-7">
+              <div className="w-9 h-9 bg-kinetic flex items-center justify-center">
                 <span className="font-display text-black text-sm">K</span>
               </div>
-              <span className="font-technical text-[10px] text-white/80">KINETIC<br/>ORANGE</span>
+              <span className="font-technical text-[10px] text-white/80 leading-tight">KINETIC<br/>ORANGE</span>
             </div>
             <p className="font-body text-sm text-white/50 leading-relaxed">
               Premium software agency building brutal digital solutions.
@@ -61,8 +61,8 @@ export default function Footer() {
 
           {FOOTER_LINKS.map((section) => (
             <div key={section.section}>
-              <h4 className="font-technical text-[10px] text-kinetic mb-6 tracking-widest">{section.section}</h4>
-              <ul className="space-y-3">
+              <h4 className="font-technical text-[10px] text-kinetic mb-7 tracking-widest">{section.section}</h4>
+              <ul className="space-y-4">
                 {section.links.map((link) => (
                   <li key={link.label}>
                     <Link href={link.href} className="font-body text-sm text-white/50 hover:text-white transition-colors duration-300">
@@ -77,8 +77,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10 px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="border-t border-white/10">
+        <div className="ko-container py-7 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <p className="font-technical text-[10px] text-white/30">
             © {new Date().getFullYear()} KINETIC ORANGE. ALL RIGHTS RESERVED.
           </p>

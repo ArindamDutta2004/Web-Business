@@ -13,30 +13,30 @@ const SERVICES = [
 
 export default function ServicesAdminPage() {
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
+    <div className="admin-page">
+      <div className="admin-page-header">
         <div>
-          <p className="font-technical text-[10px] text-kinetic tracking-widest mb-2">[MANAGEMENT]</p>
-          <h1 className="font-display text-3xl text-white">SERVICES</h1>
+          <p className="admin-kicker">[MANAGEMENT]</p>
+          <h1 className="admin-title">SERVICES</h1>
         </div>
-        <button className="bg-kinetic text-black px-5 py-2.5 font-technical text-[11px] flex items-center gap-2 hover:bg-white transition-colors">
+        <button className="admin-button">
           <Plus size={14} /> ADD SERVICE
         </button>
       </div>
 
-      <div className="border-2 border-white/10">
+      <div className="admin-list">
         {SERVICES.map((s) => (
-          <div key={s.id} className="flex items-center justify-between px-6 py-4 border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors">
-            <div className="flex items-center gap-4">
+          <div key={s.id} className="admin-list-row flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-5">
               <GripVertical size={16} className="text-white/10 cursor-grab" />
-              <span className="font-technical text-[10px] text-white/20">#{s.order}</span>
+              <span className="font-technical text-[10px] text-white/20 w-6">#{s.order}</span>
               <span className="font-display text-sm text-white">{s.title.toUpperCase()}</span>
-              {s.featured && <span className="font-technical text-[8px] bg-kinetic text-black px-2 py-0.5">FEATURED</span>}
+              {s.featured && <span className="admin-badge bg-kinetic text-black border-kinetic">FEATURED</span>}
             </div>
-            <div className="flex items-center gap-3">
-              <span className={`font-technical text-[9px] px-2 py-0.5 border ${s.status === 'active' ? 'text-green-500 border-green-500/30' : 'text-white/30 border-white/10'}`}>{s.status.toUpperCase()}</span>
-              <button className="text-white/20 hover:text-kinetic"><Edit size={14} /></button>
-              <button className="text-white/20 hover:text-red-400"><Trash2 size={14} /></button>
+            <div className="flex items-center gap-4 sm:gap-5">
+              <span className={`admin-badge ${s.status === 'active' ? 'text-green-500 border-green-500/30' : 'text-white/30 border-white/10'}`}>{s.status.toUpperCase()}</span>
+              <button className="text-white/20 hover:text-kinetic p-1.5"><Edit size={14} /></button>
+              <button className="text-white/20 hover:text-red-400 p-1.5"><Trash2 size={14} /></button>
             </div>
           </div>
         ))}

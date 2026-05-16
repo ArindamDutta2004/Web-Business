@@ -15,51 +15,51 @@ const PROJECTS = [
 
 export default function ProjectsPageClient() {
   return (
-    <div className="pt-32 pb-24">
-      <section className="px-6 md:px-8 mb-20">
-        <div className="max-w-[1800px] mx-auto">
+    <div className="ko-page">
+      <section className="pb-16 md:pb-24">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[PORTFOLIO]</p>
+            <p className="ko-eyebrow">[PORTFOLIO]</p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
-            <h1 className="font-display text-[10vw] md:text-[7vw] text-white leading-none mb-8">
+            <h1 className="ko-page-title text-white mb-8 md:mb-10">
               SELECTED <span className="text-kinetic">WORK</span>
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <p className="font-body text-white/50 text-lg max-w-2xl leading-relaxed">
+            <p className="ko-lead">
               A curated selection of projects that showcase our technical expertise and design philosophy.
             </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      <section className="px-6 md:px-8">
-        <div className="max-w-[1800px] mx-auto">
+      <section className="pb-20 md:pb-28">
+        <div className="ko-container">
           {PROJECTS.map((project, i) => (
             <RevealOnScroll key={project.title} delay={i * 0.05}>
-              <div className="border-t-2 border-white/10 py-12 md:py-16 group cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
-                <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+              <div className="ko-list-row border-t border-white/10 group cursor-pointer">
+                <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
                   <div className="flex-1">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex items-center gap-5 mb-6">
                       <span className="font-technical text-[10px] text-kinetic">{project.category}</span>
                       <span className="font-technical text-[10px] text-white/20">{project.year}</span>
                     </div>
-                    <h2 className="font-display text-[8vw] md:text-[4vw] text-white leading-none group-hover:translate-x-4 transition-transform duration-300">
+                    <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white group-hover:translate-x-2 md:group-hover:translate-x-4 transition-transform duration-300 mb-6">
                       {project.title}
                     </h2>
-                    <p className="font-body text-white/40 mt-4 max-w-lg leading-relaxed">{project.desc}</p>
-                    <div className="flex flex-wrap gap-2 mt-4">
+                    <p className="font-body text-white/40 max-w-lg leading-relaxed text-[15px]">{project.desc}</p>
+                    <div className="flex flex-wrap gap-2.5 mt-6">
                       {project.tags.map((tag) => (
-                        <span key={tag} className="font-technical text-[9px] border border-white/20 text-white/50 px-3 py-1">{tag}</span>
+                        <span key={tag} className="ko-chip">{tag}</span>
                       ))}
                     </div>
                   </div>
-                  <div className="flex gap-3 shrink-0">
-                    <span className="w-12 h-12 border-2 border-white/10 flex items-center justify-center group-hover:border-kinetic group-hover:text-kinetic transition-all duration-300">
+                  <div className="flex gap-3 shrink-0 mt-2">
+                    <span className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-kinetic group-hover:text-kinetic transition-all duration-300">
                       <ExternalLink size={18} />
                     </span>
-                    <span className="w-12 h-12 border-2 border-white/10 flex items-center justify-center group-hover:border-kinetic group-hover:bg-kinetic group-hover:text-black transition-all duration-300">
+                    <span className="w-12 h-12 border border-white/10 flex items-center justify-center group-hover:border-kinetic group-hover:bg-kinetic group-hover:text-black transition-all duration-300">
                       <ArrowUpRight size={18} className="group-hover:rotate-45 transition-transform duration-300" />
                     </span>
                   </div>
@@ -70,10 +70,10 @@ export default function ProjectsPageClient() {
         </div>
       </section>
 
-      <section className="px-6 md:px-8 py-24 mt-12 border-t-2 border-white/10">
-        <div className="max-w-[1800px] mx-auto text-center">
-          <h2 className="font-display text-[8vw] md:text-[4vw] text-white leading-none mb-8">HAVE A SIMILAR PROJECT?</h2>
-          <Link href="/contact" className="inline-flex items-center gap-3 bg-kinetic text-black px-8 py-4 font-technical text-sm hover:bg-white transition-colors">
+      <section className="ko-section border-t border-white/10">
+        <div className="ko-container text-center">
+          <h2 className="ko-cta-title text-white mb-10 md:mb-12 mx-auto">HAVE A SIMILAR PROJECT?</h2>
+          <Link href="/contact" className="ko-button">
             DISCUSS YOUR IDEA <ArrowUpRight size={16} />
           </Link>
         </div>

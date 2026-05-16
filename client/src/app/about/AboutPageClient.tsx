@@ -20,21 +20,21 @@ const VALUES = [
 
 export default function AboutPageClient() {
   return (
-    <div className="pt-32 pb-24">
+    <div className="ko-page">
       {/* Hero */}
-      <section className="px-6 md:px-8 mb-20">
-        <div className="max-w-[1800px] mx-auto">
+      <section className="pb-16 md:pb-24">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[ABOUT US]</p>
+            <p className="ko-eyebrow">[ABOUT US]</p>
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
-            <h1 className="font-display text-[10vw] md:text-[8vw] text-white leading-none mb-8">
+            <h1 className="ko-page-title text-white mb-8 md:mb-10">
               WE DON&apos;T JUST<br/>BUILD WEBSITES.<br/>
               <span className="text-kinetic">WE BUILD EMPIRES.</span>
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <p className="font-body text-white/50 text-lg md:text-xl max-w-2xl leading-relaxed">
+            <p className="ko-lead">
               Kinetic Orange is a premium software agency that transforms ambitious ideas into
               aggressive digital realities. We combine technical mastery with brutalist design
               thinking to create products that dominate.
@@ -44,20 +44,20 @@ export default function AboutPageClient() {
       </section>
 
       {/* Values */}
-      <section className="px-6 md:px-8 py-24 border-t-2 border-white/10">
-        <div className="max-w-[1800px] mx-auto">
+      <section className="ko-section border-t border-white/10">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[OUR VALUES]</p>
-            <h2 className="font-display text-[6vw] md:text-[4vw] text-white leading-none mb-16">WHAT DRIVES US</h2>
+            <p className="ko-eyebrow">[OUR VALUES]</p>
+            <h2 className="ko-section-title text-white mb-12 md:mb-16">WHAT DRIVES US</h2>
           </RevealOnScroll>
 
-          <div className="grid md:grid-cols-2 gap-0">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-5">
             {VALUES.map((value, i) => (
               <RevealOnScroll key={value.num} delay={i * 0.1}>
-                <div className="border-2 border-white/10 p-8 md:p-12 hover:border-kinetic/50 transition-colors duration-500">
+                <div className="ko-card h-full">
                   <span className="font-technical text-xs text-kinetic">[{value.num}]</span>
-                  <h3 className="font-display text-2xl md:text-3xl text-white mt-4 mb-4">{value.title}</h3>
-                  <p className="font-body text-white/40 leading-relaxed">{value.desc}</p>
+                  <h3 className="font-display text-2xl md:text-3xl text-white mt-6 mb-5">{value.title}</h3>
+                  <p className="font-body text-white/40 leading-relaxed text-[15px]">{value.desc}</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -66,22 +66,22 @@ export default function AboutPageClient() {
       </section>
 
       {/* Team */}
-      <section className="px-6 md:px-8 py-24 border-t-2 border-white/10">
-        <div className="max-w-[1800px] mx-auto">
+      <section className="ko-section border-t border-white/10">
+        <div className="ko-container">
           <RevealOnScroll>
-            <p className="font-technical text-xs text-kinetic mb-4 tracking-widest">[THE TEAM]</p>
-            <h2 className="font-display text-[6vw] md:text-[4vw] text-white leading-none mb-16">THE MINDS BEHIND THE MACHINE</h2>
+            <p className="ko-eyebrow">[THE TEAM]</p>
+            <h2 className="ko-section-title text-white mb-12 md:mb-16">THE MINDS BEHIND THE MACHINE</h2>
           </RevealOnScroll>
 
-          <div className="border-t-2 border-white/10">
+          <div className="ko-list">
             {TEAM.map((member, i) => (
               <RevealOnScroll key={member.name} delay={i * 0.1}>
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between py-8 border-b-2 border-white/10 gap-4">
+                <div className="ko-list-row flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="font-display text-[6vw] md:text-[3vw] text-white">{member.name}</h3>
-                    <p className="font-technical text-[10px] text-kinetic mt-1">{member.role}</p>
+                    <h3 className="font-display text-2xl md:text-3xl text-white">{member.name}</h3>
+                    <p className="font-technical text-[10px] text-kinetic mt-3">{member.role}</p>
                   </div>
-                  <span className="font-technical text-[10px] text-white/30 border border-white/10 px-4 py-2">
+                  <span className="ko-chip">
                     {member.specialty}
                   </span>
                 </div>
@@ -92,12 +92,12 @@ export default function AboutPageClient() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 md:px-8 py-24 bg-kinetic">
-        <div className="max-w-[1800px] mx-auto text-center">
-          <h2 className="font-display text-[8vw] md:text-[5vw] text-black leading-none mb-8">
+      <section className="ko-section bg-kinetic">
+        <div className="ko-container text-center">
+          <h2 className="ko-cta-title text-black mb-10 md:mb-12 mx-auto">
             WANT TO JOIN THE TEAM?
           </h2>
-          <Link href="/careers" className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 font-technical text-sm hover:bg-gray-900 transition-colors">
+          <Link href="/careers" className="ko-button ko-button-dark">
             VIEW OPEN POSITIONS <ArrowUpRight size={16} />
           </Link>
         </div>

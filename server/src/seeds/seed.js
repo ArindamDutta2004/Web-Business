@@ -20,6 +20,10 @@ const seedData = async () => {
       Settings.deleteMany({}),
     ]);
 
+    // Also drop stale indexes to prevent slug conflicts
+    try { await mongoose.connection.db.collection('services').dropIndexes(); } catch {}
+    try { await mongoose.connection.db.collection('settings').dropIndexes(); } catch {}
+
     // Create admin user
     const admin = await User.create({
       firstName: 'Admin',
@@ -45,8 +49,8 @@ const seedData = async () => {
     });
     console.log('Client created:', client.email);
 
-    // Seed services
-    const services = await Service.insertMany([
+    // Seed services one by one to trigger pre('save') hooks for slug generation
+    const serviceData = [
       {
         title: 'Web Applications',
         description: 'Full-stack web applications built with cutting-edge technology. Scalable, performant, and production-ready from day one.',
@@ -121,11 +125,16 @@ const seedData = async () => {
         order: 6,
         isActive: true,
       },
-    ]);
-    console.log(`${services.length} services seeded`);
+    ];
 
-    // Seed settings
-    await Settings.insertMany([
+    // Use create() one-by-one so pre('save') hooks run and generate slugs
+    for (const s of serviceData) {
+      await Service.create(s);
+    }
+    console.log(`${serviceData.length} services seeded`);
+
+    // Seed settings one by one
+    const settingsData = [
       { key: 'siteName', value: 'Kinetic Orange', category: 'general', isPublic: true },
       { key: 'siteTagline', value: 'Premium Software Agency', category: 'general', isPublic: true },
       { key: 'contactEmail', value: 'hello@kineticorange.com', category: 'general', isPublic: true },
@@ -134,7 +143,11 @@ const seedData = async () => {
       { key: 'github', value: 'https://github.com/kineticorange', category: 'social', isPublic: true },
       { key: 'twitter', value: 'https://twitter.com/kineticorange', category: 'social', isPublic: true },
       { key: 'linkedin', value: 'https://linkedin.com/company/kineticorange', category: 'social', isPublic: true },
-    ]);
+    ];
+
+    for (const setting of settingsData) {
+      await Settings.create(setting);
+    }
     console.log('Settings seeded');
 
     console.log('\n══════════════════════════════════════');

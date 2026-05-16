@@ -41,38 +41,38 @@ export default function LoginPage() {
     }
   };
 
-  const inputClass = 'w-full bg-transparent border-2 border-white/20 px-4 py-3.5 font-body text-white text-sm placeholder:text-white/20 focus:border-kinetic focus:outline-none transition-colors';
+  const inputClass = 'ko-input';
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-24">
+    <div className="min-h-screen flex items-center justify-center px-5 py-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-md"
+        className="ko-card w-full max-w-md"
       >
-        <div className="mb-10">
-          <p className="font-technical text-xs text-kinetic mb-3 tracking-widest">[AUTHENTICATION]</p>
+        <div className="mb-8">
+          <p className="ko-eyebrow mb-2">[AUTHENTICATION]</p>
           <h1 className="font-display text-5xl md:text-6xl text-white leading-none">LOGIN</h1>
-          <p className="font-body text-white/40 text-sm mt-3">Access your dashboard and projects.</p>
+          <p className="font-body text-white/40 text-sm mt-2">Access your dashboard and projects.</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="font-technical text-[10px] text-white/50 tracking-widest mb-2 block">EMAIL</label>
+            <label className="ko-label">EMAIL</label>
             <input {...register('email')} className={inputClass} placeholder="your@email.com" />
-            {errors.email && <p className="font-technical text-[10px] text-kinetic mt-1">{errors.email.message}</p>}
+            {errors.email && <p className="ko-error">{errors.email.message}</p>}
           </div>
 
           <div>
-            <label className="font-technical text-[10px] text-white/50 tracking-widest mb-2 block">PASSWORD</label>
+            <label className="ko-label">PASSWORD</label>
             <div className="relative">
               <input {...register('password')} type={showPassword ? 'text' : 'password'} className={inputClass} placeholder="••••••••" />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white">
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
-            {errors.password && <p className="font-technical text-[10px] text-kinetic mt-1">{errors.password.message}</p>}
+            {errors.password && <p className="ko-error">{errors.password.message}</p>}
           </div>
 
           <div className="flex justify-end">
@@ -81,12 +81,12 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          <button type="submit" disabled={isSubmitting} className="w-full bg-kinetic text-black py-4 font-technical text-sm flex items-center justify-center gap-3 hover:bg-white transition-colors disabled:opacity-50">
+          <button type="submit" disabled={isSubmitting} className="ko-button w-full disabled:opacity-50">
             {isSubmitting ? 'AUTHENTICATING...' : <>SIGN IN <ArrowRight size={16} /></>}
           </button>
         </form>
 
-        <p className="font-body text-white/30 text-sm text-center mt-8">
+        <p className="font-body text-white/30 text-sm text-center mt-6">
           Don&apos;t have an account?{' '}
           <Link href="/auth/register" className="text-kinetic hover:text-white transition-colors font-medium">Register</Link>
         </p>

@@ -32,26 +32,26 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-24">
-      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center px-5 py-24">
+      <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} className="ko-card w-full max-w-md">
         <div className="mb-10">
-          <p className="font-technical text-xs text-kinetic mb-3 tracking-widest">[ACCOUNT RECOVERY]</p>
+          <p className="ko-eyebrow mb-3">[ACCOUNT RECOVERY]</p>
           <h1 className="font-display text-5xl text-white leading-none">RESET PASSWORD</h1>
         </div>
 
         {sent ? (
-          <div className="border-2 border-kinetic p-8 text-center">
+          <div className="border border-kinetic p-8 text-center">
             <p className="font-display text-2xl text-white mb-4">CHECK YOUR EMAIL</p>
             <p className="font-body text-white/50 text-sm">We&apos;ve sent a reset link to your email address.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>
-              <label className="font-technical text-[10px] text-white/50 tracking-widest mb-2 block">EMAIL ADDRESS</label>
-              <input {...register('email')} className="w-full bg-transparent border-2 border-white/20 px-4 py-3.5 font-body text-white text-sm placeholder:text-white/20 focus:border-kinetic focus:outline-none transition-colors" placeholder="your@email.com" />
-              {errors.email && <p className="font-technical text-[10px] text-kinetic mt-1">{errors.email.message as string}</p>}
+              <label className="ko-label">EMAIL ADDRESS</label>
+              <input {...register('email')} className="ko-input" placeholder="your@email.com" />
+              {errors.email && <p className="ko-error">{errors.email.message as string}</p>}
             </div>
-            <button type="submit" disabled={isSubmitting} className="w-full bg-kinetic text-black py-4 font-technical text-sm hover:bg-white transition-colors disabled:opacity-50">
+            <button type="submit" disabled={isSubmitting} className="ko-button w-full disabled:opacity-50">
               {isSubmitting ? 'SENDING...' : 'SEND RESET LINK'}
             </button>
           </form>
