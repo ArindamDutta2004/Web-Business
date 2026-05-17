@@ -7,7 +7,7 @@ const FOOTER_LINKS = [
   { section: 'NAVIGATE', links: [
     { label: 'Home', href: '/' }, { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' }, { label: 'Projects', href: '/projects' },
-    { label: 'Blog', href: '/blog' }, { label: 'Careers', href: '/careers' },
+    { label: 'Blog', href: '/blog' },
   ]},
   { section: 'SERVICES', links: [
     { label: 'Web Applications', href: '/services' }, { label: 'AI Integration', href: '/services' },
@@ -22,7 +22,7 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t-2 border-white/10">
+    <footer className="bg-black ">
       {/* CTA Banner */}
       <div className="border-b border-white/10">
         <div className="ko-container py-16 md:py-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-10 md:gap-14">
@@ -33,13 +33,6 @@ export default function Footer() {
               <span className="text-kinetic">BRUTAL</span>
             </h2>
           </div>
-          {/* <Link
-            href="/contact"
-            className="ko-button group shrink-0"
-          >
-            START PROJECT
-            <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" size={20} />
-          </Link> */}
         </div>
       </div>
 

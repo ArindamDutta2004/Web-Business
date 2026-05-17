@@ -7,10 +7,9 @@ import Link from 'next/link';
 import api from '@/lib/api';
 
 const TEAM = [
-  { name: 'ARJUN PATEL', role: 'FOUNDER & CTO', specialty: 'FULL-STACK ARCHITECTURE' },
-  { name: 'PRIYA SHARMA', role: 'DESIGN DIRECTOR', specialty: 'UI/UX & BRAND SYSTEMS' },
-  { name: 'RAHUL MENON', role: 'AI LEAD', specialty: 'ML & AUTOMATION' },
-  { name: 'ANANYA GUPTA', role: 'PROJECT DIRECTOR', specialty: 'STRATEGY & DELIVERY' },
+  { name: 'DEBJIT GHOSH', role: 'FOUNDER', specialty: 'FULL-STACK ARCHITECTURE' },
+  { name: 'ARINDAM DUTTA', role: 'CO-FOUNDER', specialty: 'FULL-STACK ARCHITECTURE' },
+  { name: 'SUMAN KHAN', role: 'CO-FOUNDER', specialty: 'FULL-STACK ARCHITECTURE' }
 ];
 
 const VALUES = [
@@ -99,7 +98,7 @@ export default function AboutPageClient() {
                 <div className="ko-list-row flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                   <div>
                     <h3 className="font-display text-2xl md:text-3xl text-white">{member.name}</h3>
-                    <p className="font-technical text-[10px] text-kinetic mt-3">{member.role}</p>
+                    <p className="font-technical text-[15px] text-kinetic mt-3">{member.role}</p>
                   </div>
                   <span className="ko-chip">
                     {member.specialty}
@@ -111,17 +110,7 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="ko-section bg-kinetic">
-        <div className="ko-container text-center">
-          <h2 className="ko-cta-title text-black mb-10 md:mb-12 mx-auto">
-            WANT TO JOIN THE TEAM?
-          </h2>
-          <Link href="/careers" className="ko-button ko-button-dark">
-            VIEW OPEN POSITIONS <ArrowUpRight size={16} />
-          </Link>
-        </div>
-      </section>
+
     </div>
   );
 }
