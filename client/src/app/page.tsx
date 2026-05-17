@@ -1,10 +1,12 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import ScrollIndicator from '@/components/ScrollIndicator';
 import { RevealOnScroll } from '@/components/animations/RevealAnimations';
+import api from '@/lib/api';
 
 const SERVICES = [
   { index: '01', title: 'WEB APPLICATIONS', tags: ['NEXT.JS', 'REACT', 'TYPESCRIPT'] },
@@ -21,6 +23,11 @@ const STATS = [
   { value: '3+', label: 'YEARS EXPERIENCE' },
   { value: '24/7', label: 'SUPPORT AVAILABLE' },
 ];
+
+type ApiService = {
+  title?: string;
+  tags?: string[];
+};
 
 // ─── Hero Section ────────────────────────────────────────
 function HeroSection() {
@@ -173,6 +180,22 @@ function MarqueeSection() {
 
 // ─── Services Section ────────────────────────────────────
 function ServicesSection() {
+  const [services, setServices] = useState(SERVICES);
+
+  useEffect(() => {
+    api.get('/services?featured=true')
+      .then(({ data }) => {
+        const source = Array.isArray(data.data) && data.data.length ? data.data : [];
+        if (source.length === 0) return;
+        setServices((source as ApiService[]).slice(0, 6).map((service, index) => ({
+          index: String(index + 1).padStart(2, '0'),
+          title: service.title?.toUpperCase() || 'SERVICE',
+          tags: service.tags?.length ? service.tags.slice(0, 3).map((tag: string) => tag.toUpperCase()) : ['CUSTOM'],
+        })));
+      })
+      .catch(() => undefined);
+  }, []);
+
   return (
     <section className="ko-section bg-black">
       <div className="ko-container">
@@ -184,7 +207,7 @@ function ServicesSection() {
         </RevealOnScroll>
 
         <div className="ko-list">
-          {SERVICES.map((service, i) => (
+          {services.map((service, i) => (
             <RevealOnScroll key={service.index} delay={i * 0.05}>
               <Link
                 href="/services"
@@ -238,6 +261,22 @@ function StatsSection() {
 
 // ─── About Preview ───────────────────────────────────────
 function AboutPreview() {
+  const [copy, setCopy] = useState({
+    primary: 'We are a collective of engineers, designers, and strategists who believe in the power of brutal simplicity. No fluff. No filler. Just aggressive execution and premium results.',
+    secondary: 'From AI-powered platforms to enterprise dashboards, we build digital products that dominate markets and define categories. Our approach is technical, our standards are ruthless, and our output is unforgettable.',
+  });
+
+  useEffect(() => {
+    api.get('/settings/public')
+      .then(({ data }) => {
+        setCopy((current) => ({
+          primary: data.data?.['about.primaryCopy'] || current.primary,
+          secondary: data.data?.['about.secondaryCopy'] || current.secondary,
+        }));
+      })
+      .catch(() => undefined);
+  }, []);
+
   return (
     <section className="bg-black ko-section">
       <div className="ko-container ko-two-col items-start">
@@ -252,13 +291,10 @@ function AboutPreview() {
         <RevealOnScroll delay={0.2}>
           <div className="space-y-8 md:pt-10">
             <p className="font-body text-white/60 text-base md:text-lg leading-relaxed">
-              We are a collective of engineers, designers, and strategists who believe in the power
-              of brutal simplicity. No fluff. No filler. Just aggressive execution and premium results.
+              {copy.primary}
             </p>
             <p className="font-body text-white/40 text-sm md:text-base leading-relaxed">
-              From AI-powered platforms to enterprise dashboards, we build digital products
-              that dominate markets and define categories. Our approach is technical, our
-              standards are ruthless, and our output is unforgettable.
+              {copy.secondary}
             </p>
             <Link
               href="/about"

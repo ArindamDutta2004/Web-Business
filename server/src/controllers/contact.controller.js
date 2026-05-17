@@ -67,6 +67,27 @@ exports.replyContact = async (req, res, next) => {
   } catch (error) { next(error); }
 };
 
+// @desc    Update contact status (admin)
+// @route   PUT /api/contact/:id/status
+exports.updateContactStatus = async (req, res, next) => {
+  try {
+    const allowedStatuses = ['new', 'read', 'replied', 'resolved', 'archived'];
+    const { status } = req.body;
+
+    if (!allowedStatuses.includes(status)) {
+      return next(new AppError('Invalid contact status', 400));
+    }
+
+    const contact = await Contact.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true, runValidators: true }
+    );
+    if (!contact) return next(new AppError('Contact not found', 404));
+    res.json({ success: true, data: contact });
+  } catch (error) { next(error); }
+};
+
 // @desc    Delete contact (admin)
 // @route   DELETE /api/contact/:id
 exports.deleteContact = async (req, res, next) => {

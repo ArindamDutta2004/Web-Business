@@ -12,7 +12,7 @@ const contactSchema = new mongoose.Schema(
     budget: { type: String, trim: true },
     status: {
       type: String,
-      enum: ['new', 'read', 'replied', 'archived'],
+      enum: ['new', 'read', 'replied', 'resolved', 'archived'],
       default: 'new',
     },
     reply: { type: String },

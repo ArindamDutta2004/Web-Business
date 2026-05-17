@@ -84,6 +84,33 @@ exports.getUsers = async (req, res, next) => {
   }
 };
 
+// @desc    Create user (admin)
+// @route   POST /api/users
+exports.createUser = async (req, res, next) => {
+  try {
+    const { firstName, lastName, email, password, phone, company, role, isActive, isVerified } = req.body;
+
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return next(new AppError('Email already registered', 400));
+
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+      company,
+      role,
+      isActive,
+      isVerified,
+    });
+
+    res.status(201).json({ success: true, data: user });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Get user by ID (admin)
 // @route   GET /api/users/:id
 exports.getUserById = async (req, res, next) => {

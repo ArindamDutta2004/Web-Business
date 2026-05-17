@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { RevealOnScroll } from '@/components/animations/RevealAnimations';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import api from '@/lib/api';
 
 const PROJECTS = [
   { title: 'NEXUS AI', category: 'AI PLATFORM', year: '2025', desc: 'Enterprise AI management platform with real-time model monitoring and automated pipelines.', tags: ['NEXT.JS', 'PYTHON', 'TENSORFLOW'] },
@@ -13,7 +15,35 @@ const PROJECTS = [
   { title: 'CRYPTOVAULT', category: 'WEB3', year: '2023', desc: 'Multi-chain cryptocurrency wallet with DeFi integration and portfolio tracking.', tags: ['REACT', 'SOLIDITY', 'ETHERS.JS'] },
 ];
 
+type ApiProject = {
+  title?: string;
+  service?: { title?: string };
+  status?: string;
+  createdAt?: string;
+  description?: string;
+  technologies?: string[];
+  liveUrl?: string;
+};
+
 export default function ProjectsPageClient() {
+  const [projects, setProjects] = useState(PROJECTS);
+
+  useEffect(() => {
+    api.get('/projects/public')
+      .then(({ data }) => {
+        if (!Array.isArray(data.data) || data.data.length === 0) return;
+        setProjects((data.data as ApiProject[]).map((project) => ({
+          title: project.title?.toUpperCase() || 'PROJECT',
+          category: project.service?.title?.toUpperCase() || project.status?.toUpperCase() || 'PROJECT',
+          year: project.createdAt ? new Date(project.createdAt).getFullYear().toString() : '',
+          desc: project.description || '',
+          tags: project.technologies?.length ? project.technologies.map((tag: string) => tag.toUpperCase()) : ['CUSTOM'],
+          liveUrl: project.liveUrl,
+        })));
+      })
+      .catch(() => undefined);
+  }, []);
+
   return (
     <div className="ko-page">
       <section className="pb-16 md:pb-24">
@@ -36,7 +66,7 @@ export default function ProjectsPageClient() {
 
       <section className="pb-20 md:pb-28">
         <div className="ko-container">
-          {PROJECTS.map((project, i) => (
+          {projects.map((project, i) => (
             <RevealOnScroll key={project.title} delay={i * 0.05}>
               <div className="ko-list-row border-t border-white/10 group cursor-pointer">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">

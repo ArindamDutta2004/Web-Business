@@ -1,45 +1,61 @@
 'use client';
 
-import { Plus, Edit, Eye, Trash2 } from 'lucide-react';
-
-const POSTS = [
-  { title: 'Why Brutalist Design Works', status: 'published', category: 'Design', views: 2400, date: 'MAR 2025' },
-  { title: 'Building AI Pipelines', status: 'published', category: 'Engineering', views: 3100, date: 'FEB 2025' },
-  { title: 'Next.js 15 Deep Dive', status: 'draft', category: 'Tutorial', views: 0, date: 'APR 2025' },
-];
+import ResourcePage, { formatDate, StatusBadge, statusTone } from '@/components/admin/ResourcePage';
 
 export default function BlogAdminPage() {
   return (
-    <div className="admin-page">
-      <div className="admin-page-header">
-        <div>
-          <p className="admin-kicker">[CMS]</p>
-          <h1 className="admin-title">BLOG</h1>
-        </div>
-        <button className="admin-button">
-          <Plus size={14} /> NEW POST
-        </button>
-      </div>
-
-      <div className="space-y-4">
-        {POSTS.map((p) => (
-          <div key={p.title} className="admin-card flex flex-col md:flex-row md:items-center justify-between gap-5">
-            <div className="min-w-0">
-              <h3 className="text-sm font-semibold text-white">{p.title.toUpperCase()}</h3>
-              <div className="flex flex-wrap gap-4 md:gap-5 mt-3">
-                <span className="font-technical text-[9px] text-white/30">{p.category.toUpperCase()}</span>
-                <span className="font-technical text-[9px] text-white/20">{p.date}</span>
-                <span className="font-technical text-[9px] text-white/20 flex items-center gap-1.5"><Eye size={10} />{p.views.toLocaleString()}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 md:gap-5">
-              <span className={`admin-badge ${p.status === 'published' ? 'text-green-500 border-green-500/30' : 'text-yellow-400 border-yellow-400/30'}`}>{p.status.toUpperCase()}</span>
-              <button className="text-white/20 hover:text-kinetic p-1.5"><Edit size={14} /></button>
-              <button className="text-white/20 hover:text-red-400 p-1.5"><Trash2 size={14} /></button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <ResourcePage
+      title="Blog"
+      kicker="[CMS]"
+      description="Create, edit, publish, archive, and optimize user-facing blog posts."
+      listPath="/blog/admin/all"
+      createPath="/blog"
+      updatePath={(post) => `/blog/${post._id}`}
+      deletePath={(post) => `/blog/${post._id}`}
+      createLabel="New post"
+      getTitle={(post) => post.title}
+      fields={[
+        { name: 'title', label: 'Title', required: true },
+        { name: 'category', label: 'Category', required: true },
+        { name: 'status', label: 'Status', type: 'select', required: true, options: [
+          { label: 'Draft', value: 'draft' },
+          { label: 'Published', value: 'published' },
+          { label: 'Archived', value: 'archived' },
+        ] },
+        { name: 'excerpt', label: 'Excerpt', type: 'textarea' },
+        { name: 'content', label: 'Content', type: 'textarea', required: true, rows: 10 },
+        { name: 'tags', label: 'Tags', type: 'tags' },
+        { name: 'thumbnail', label: 'Thumbnail URL' },
+        { name: 'isFeatured', label: 'Featured post', type: 'checkbox' },
+        { name: 'seo.metaTitle', label: 'SEO title' },
+        { name: 'seo.metaDescription', label: 'SEO description', type: 'textarea' },
+        { name: 'seo.keywords', label: 'SEO keywords', type: 'tags' },
+      ]}
+      initialForm={{ status: 'draft', category: 'Engineering', isFeatured: false }}
+      mapFormToPayload={(form) => ({
+        ...form,
+        seo: {
+          metaTitle: form['seo.metaTitle'],
+          metaDescription: form['seo.metaDescription'],
+          keywords: form['seo.keywords'],
+        },
+      })}
+      columns={[
+        {
+          label: 'Post',
+          render: (post) => (
+            <>
+              <span className="admin-table-title">{post.title}</span>
+              <span className="admin-table-subtitle">{post.excerpt || post.slug}</span>
+            </>
+          ),
+        },
+        { label: 'Category', render: (post) => post.category },
+        { label: 'Status', render: (post) => <StatusBadge value={post.status} tone={statusTone(post.status)} /> },
+        { label: 'Views', render: (post) => post.views?.toLocaleString() || '0' },
+        { label: 'Updated', render: (post) => formatDate(post.updatedAt) },
+      ]}
+      filterItem={(post, query) => `${post.title} ${post.category} ${post.excerpt || ''}`.toLowerCase().includes(query)}
+    />
   );
 }

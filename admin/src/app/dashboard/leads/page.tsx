@@ -1,39 +1,67 @@
 'use client';
 
-const LEADS = [
-  { name: 'TechCorp Inc', email: 'cto@techcorp.com', service: 'AI Integration', budget: '$50K+', status: 'qualified', priority: 'high' },
-  { name: 'StartupXYZ', email: 'founder@xyz.io', service: 'Web App', budget: '$25K-50K', status: 'new', priority: 'medium' },
-  { name: 'DesignCo', email: 'hello@designco.com', service: 'Brand System', budget: '$10K-25K', status: 'contacted', priority: 'low' },
-];
-
-const sc: Record<string, string> = { new: 'text-blue-400 border-blue-400/30', contacted: 'text-yellow-400 border-yellow-400/30', qualified: 'text-green-500 border-green-500/30', proposal: 'text-kinetic border-kinetic/30' };
+import ResourcePage, { formatDate, StatusBadge, statusTone } from '@/components/admin/ResourcePage';
 
 export default function LeadsPage() {
   return (
-    <div className="admin-page">
-      <div className="admin-page-header">
-        <div>
-          <p className="admin-kicker">[SALES]</p>
-          <h1 className="admin-title">LEADS</h1>
-        </div>
-      </div>
-
-      <div className="space-y-4">
-        {LEADS.map((l) => (
-          <div key={l.email} className="admin-card">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-              <div className="min-w-0">
-                <h3 className="text-sm font-semibold text-white">{l.name}</h3>
-                <p className="text-sm text-white/30 mt-2 break-words">{l.email} • {l.service} • {l.budget}</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <span className={`admin-badge ${sc[l.status] || 'text-white/30 border-white/10'}`}>{l.status.toUpperCase()}</span>
-                <span className={`admin-badge ${l.priority === 'high' ? 'text-kinetic border-kinetic/30' : 'text-white/30 border-white/10'}`}>{l.priority.toUpperCase()}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <ResourcePage
+      title="Leads"
+      kicker="[SALES]"
+      description="Review incoming leads, update qualification status, and keep sales follow-up organized."
+      listPath="/leads"
+      createPath="/leads"
+      createLabel="Add lead"
+      getTitle={(lead) => lead.name}
+      fields={[
+        { name: 'name', label: 'Name', required: true },
+        { name: 'email', label: 'Email', type: 'email', required: true },
+        { name: 'phone', label: 'Phone' },
+        { name: 'company', label: 'Company' },
+        { name: 'service', label: 'Service' },
+        { name: 'budget', label: 'Budget' },
+        { name: 'timeline', label: 'Timeline' },
+        { name: 'message', label: 'Message', type: 'textarea' },
+        { name: 'status', label: 'Status', type: 'select', options: [
+          { label: 'New', value: 'new' },
+          { label: 'Contacted', value: 'contacted' },
+          { label: 'Qualified', value: 'qualified' },
+          { label: 'Proposal', value: 'proposal' },
+          { label: 'Negotiation', value: 'negotiation' },
+          { label: 'Won', value: 'won' },
+          { label: 'Lost', value: 'lost' },
+        ] },
+        { name: 'priority', label: 'Priority', type: 'select', options: [
+          { label: 'Low', value: 'low' },
+          { label: 'Medium', value: 'medium' },
+          { label: 'High', value: 'high' },
+        ] },
+        { name: 'source', label: 'Source', type: 'select', options: [
+          { label: 'Website', value: 'website' },
+          { label: 'Referral', value: 'referral' },
+          { label: 'Social', value: 'social' },
+          { label: 'Ads', value: 'ads' },
+          { label: 'Email', value: 'email' },
+          { label: 'Other', value: 'other' },
+        ] },
+      ]}
+      initialForm={{ status: 'new', priority: 'medium', source: 'website' }}
+      columns={[
+        {
+          label: 'Lead',
+          render: (lead) => (
+            <>
+              <span className="admin-table-title">{lead.name}</span>
+              <span className="admin-table-subtitle">{lead.email}</span>
+            </>
+          ),
+        },
+        { label: 'Service', render: (lead) => lead.service || '-' },
+        { label: 'Budget', render: (lead) => lead.budget || '-' },
+        { label: 'Status', render: (lead) => <StatusBadge value={lead.status} tone={statusTone(lead.status)} /> },
+        { label: 'Priority', render: (lead) => <StatusBadge value={lead.priority} tone={lead.priority === 'high' ? 'accent' : 'neutral'} /> },
+        { label: 'Created', render: (lead) => formatDate(lead.createdAt) },
+      ]}
+      filterItem={(lead, query) => `${lead.name} ${lead.email} ${lead.company || ''} ${lead.service || ''}`.toLowerCase().includes(query)}
+    />
   );
 }
