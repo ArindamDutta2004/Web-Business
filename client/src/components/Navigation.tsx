@@ -46,10 +46,10 @@ export default function Navigation() {
           <Link href="/" className="relative z-50 group">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-kinetic flex items-center justify-center">
-                <span className="font-display text-black text-lg">K</span>
+                <span className="font-display text-black text-lg">Q</span>
               </div>
               <span className="font-technical text-xs text-white hidden md:block tracking-widest leading-tight">
-                KINETIC<br/>ORANGE
+              QUANTUM<br/>CODE
               </span>
             </div>
           </Link>

@@ -79,7 +79,7 @@ function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="ko-lead mt-10 md:mt-12 max-w-xl"
+          className="ko-lead font-technical text-white/80 mt-10 md:mt-12 max-w-xl"
         >
           We craft premium web applications, AI-powered platforms, and brutal digital solutions
           that push boundaries and drive results.
@@ -133,7 +133,7 @@ function HeroSection() {
 
 // ─── Marquee Section ─────────────────────────────────────
 function MarqueeSection() {
-  const marqueeText = 'KINETIC ORANGE • BUILD DIFFERENT • PUSH BOUNDARIES • DIGITAL FUTURES • ';
+  const marqueeText = 'QUANTUM CODE • BUILD DIFFERENT • PUSH BOUNDARIES • DIGITAL FUTURES • ';
 
   return (
     <section className="py-8 md:py-12 bg-black overflow-hidden border-y border-white/5">
@@ -290,10 +290,10 @@ function AboutPreview() {
 
         <RevealOnScroll delay={0.2}>
           <div className="space-y-8 md:pt-10">
-            <p className="font-body text-white/60 text-base md:text-lg leading-relaxed">
+            <p className="font-body font-technical text-white/60 text-base md:text-lg leading-relaxed">
               {copy.primary}
             </p>
-            <p className="font-body text-white/40 text-sm md:text-base leading-relaxed">
+            <p className="font-body font-technical text-white/40 text-sm md:text-base leading-relaxed">
               {copy.secondary}
             </p>
             <Link
