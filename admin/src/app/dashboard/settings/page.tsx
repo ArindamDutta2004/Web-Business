@@ -1,54 +1,49 @@
 'use client';
 
-import { Save } from 'lucide-react';
+import ResourcePage, { formatDate, StatusBadge } from '@/components/admin/ResourcePage';
 
 export default function SettingsAdminPage() {
-  const inputClass = 'admin-input';
-
   return (
-    <div className="admin-page">
-      <div className="admin-page-header">
-        <div>
-          <p className="admin-kicker">[CONFIGURATION]</p>
-          <h1 className="admin-title">SETTINGS</h1>
-        </div>
-      </div>
-
-      <div className="max-w-3xl space-y-6">
-        <div className="admin-card">
-          <h2 className="admin-section-title mb-7">GENERAL</h2>
-          <div className="space-y-6">
-            <div>
-              <label className="admin-label">SITE NAME</label>
-              <input defaultValue="Kinetic Orange" className={inputClass} />
-            </div>
-            <div>
-              <label className="admin-label">TAGLINE</label>
-              <input defaultValue="Premium Software Agency" className={inputClass} />
-            </div>
-            <div>
-              <label className="admin-label">CONTACT EMAIL</label>
-              <input defaultValue="hello@kineticorange.com" className={inputClass} />
-            </div>
-          </div>
-        </div>
-
-        <div className="admin-card">
-          <h2 className="admin-section-title mb-7">SOCIAL LINKS</h2>
-          <div className="space-y-6">
-            {['GITHUB', 'TWITTER', 'LINKEDIN'].map((s) => (
-              <div key={s}>
-                <label className="admin-label">{s} URL</label>
-                <input placeholder={`https://${s.toLowerCase()}.com/kineticorange`} className={inputClass} />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <button className="admin-button">
-          <Save size={16} /> SAVE SETTINGS
-        </button>
-      </div>
-    </div>
+    <ResourcePage
+      title="Settings"
+      kicker="[CONFIGURATION]"
+      description="Manage global content and application settings. Public settings are available to the user-facing app without redeploying."
+      listPath="/settings"
+      createPath="/settings"
+      updatePath={() => '/settings'}
+      deletePath={(setting) => `/settings/${setting._id}`}
+      createLabel="Save setting"
+      getTitle={(setting) => setting.key}
+      fields={[
+        { name: 'key', label: 'Key', required: true, helper: 'Examples: siteName, siteTagline, about.primaryCopy, homepage.heroTitle' },
+        { name: 'category', label: 'Category', type: 'select', options: [
+          { label: 'General', value: 'general' },
+          { label: 'SEO', value: 'seo' },
+          { label: 'Email', value: 'email' },
+          { label: 'Social', value: 'social' },
+          { label: 'Pricing', value: 'pricing' },
+          { label: 'Appearance', value: 'appearance' },
+        ] },
+        { name: 'value', label: 'Value', type: 'textarea', required: true },
+        { name: 'description', label: 'Description', type: 'textarea' },
+        { name: 'isPublic', label: 'Expose publicly', type: 'checkbox' },
+      ]}
+      initialForm={{ category: 'general', isPublic: true }}
+      columns={[
+        {
+          label: 'Setting',
+          render: (setting) => (
+            <>
+              <span className="admin-table-title">{setting.key}</span>
+              <span className="admin-table-subtitle">{setting.description || String(setting.value).slice(0, 90)}</span>
+            </>
+          ),
+        },
+        { label: 'Category', render: (setting) => <StatusBadge value={setting.category} tone="neutral" /> },
+        { label: 'Public', render: (setting) => <StatusBadge value={setting.isPublic ? 'public' : 'private'} tone={setting.isPublic ? 'success' : 'neutral'} /> },
+        { label: 'Updated', render: (setting) => formatDate(setting.updatedAt) },
+      ]}
+      filterItem={(setting, query) => `${setting.key} ${setting.category} ${setting.description || ''} ${String(setting.value)}`.toLowerCase().includes(query)}
+    />
   );
 }

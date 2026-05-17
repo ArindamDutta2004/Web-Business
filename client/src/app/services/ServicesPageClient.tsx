@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { RevealOnScroll } from '@/components/animations/RevealAnimations';
 import { ArrowUpRight, Code, Bot, LayoutDashboard, Palette, ShoppingCart, Zap } from 'lucide-react';
 import Link from 'next/link';
+import api from '@/lib/api';
 
 const SERVICES = [
   { icon: Code, index: '01', title: 'WEB APPLICATIONS', tags: ['NEXT.JS', 'REACT', 'NODE.JS', 'TYPESCRIPT'],
@@ -25,7 +27,35 @@ const SERVICES = [
     features: ['Workflow Design', 'API Integration', 'Scheduled Tasks', 'Event-driven Systems'] },
 ];
 
+const iconMap = { code: Code, bot: Bot, dashboard: LayoutDashboard, palette: Palette, cart: ShoppingCart, zap: Zap };
+type ApiService = {
+  icon?: keyof typeof iconMap;
+  title?: string;
+  tags?: string[];
+  description?: string;
+  shortDescription?: string;
+  features?: Array<{ title?: string } | string>;
+};
+
 export default function ServicesPageClient() {
+  const [services, setServices] = useState(SERVICES);
+
+  useEffect(() => {
+    api.get('/services')
+      .then(({ data }) => {
+        if (!Array.isArray(data.data) || data.data.length === 0) return;
+        setServices((data.data as ApiService[]).map((service, index) => ({
+          icon: iconMap[service.icon as keyof typeof iconMap] || Code,
+          index: String(index + 1).padStart(2, '0'),
+          title: service.title?.toUpperCase() || 'SERVICE',
+          tags: service.tags?.length ? service.tags.map((tag: string) => tag.toUpperCase()) : ['CUSTOM'],
+          desc: service.description || service.shortDescription || '',
+          features: service.features?.length ? service.features.map((feature) => typeof feature === 'string' ? feature : feature.title || '') : [],
+        })));
+      })
+      .catch(() => undefined);
+  }, []);
+
   return (
     <div className="ko-page">
       <section className="pb-16 md:pb-24">
@@ -48,7 +78,7 @@ export default function ServicesPageClient() {
 
       <section className="pb-20 md:pb-28">
         <div className="ko-container">
-          {SERVICES.map((service, i) => (
+          {services.map((service, i) => (
             <RevealOnScroll key={service.index} delay={i * 0.05}>
               <div className="ko-list-row border-t border-white/10 group">
                 <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">

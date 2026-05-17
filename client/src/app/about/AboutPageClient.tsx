@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { RevealOnScroll } from '@/components/animations/RevealAnimations';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
+import api from '@/lib/api';
 
 const TEAM = [
   { name: 'ARJUN PATEL', role: 'FOUNDER & CTO', specialty: 'FULL-STACK ARCHITECTURE' },
@@ -19,6 +21,22 @@ const VALUES = [
 ];
 
 export default function AboutPageClient() {
+  const [content, setContent] = useState({
+    title: "WE DON'T JUST\nBUILD WEBSITES.\nWE BUILD EMPIRES.",
+    lead: 'Kinetic Orange is a premium software agency that transforms ambitious ideas into aggressive digital realities. We combine technical mastery with brutalist design thinking to create products that dominate.',
+  });
+
+  useEffect(() => {
+    api.get('/settings/public')
+      .then(({ data }) => {
+        setContent((current) => ({
+          title: data.data?.['about.title'] || current.title,
+          lead: data.data?.['about.lead'] || current.lead,
+        }));
+      })
+      .catch(() => undefined);
+  }, []);
+
   return (
     <div className="ko-page">
       {/* Hero */}
@@ -29,15 +47,17 @@ export default function AboutPageClient() {
           </RevealOnScroll>
           <RevealOnScroll delay={0.1}>
             <h1 className="ko-page-title text-white mb-8 md:mb-10">
-              WE DON&apos;T JUST<br/>BUILD WEBSITES.<br/>
-              <span className="text-kinetic">WE BUILD EMPIRES.</span>
+              {content.title.split('\n').map((line, index, lines) => (
+                <span key={line}>
+                  {index === lines.length - 1 ? <span className="text-kinetic">{line}</span> : line}
+                  {index < lines.length - 1 && <br />}
+                </span>
+              ))}
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
             <p className="ko-lead">
-              Kinetic Orange is a premium software agency that transforms ambitious ideas into
-              aggressive digital realities. We combine technical mastery with brutalist design
-              thinking to create products that dominate.
+              {content.lead}
             </p>
           </RevealOnScroll>
         </div>

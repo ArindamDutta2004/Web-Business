@@ -1,61 +1,68 @@
 'use client';
 
-import { Plus, MoreHorizontal } from 'lucide-react';
-
-const PROJECTS = [
-  { title: 'NexusAI Platform', client: 'TechCorp', status: 'in-progress', priority: 'high', progress: 65, budget: '$45,000' },
-  { title: 'VaultPay Dashboard', client: 'FinanceHub', status: 'review', priority: 'urgent', progress: 90, budget: '$32,000' },
-  { title: 'GridWorks Admin', client: 'LogiChain', status: 'in-progress', priority: 'medium', progress: 40, budget: '$28,000' },
-  { title: 'StudioLab Website', client: 'CreativesCo', status: 'completed', priority: 'low', progress: 100, budget: '$15,000' },
-  { title: 'AutoFlow API', client: 'StartupXYZ', status: 'proposal', priority: 'high', progress: 0, budget: '$52,000' },
-];
-
-const statusColor: Record<string, string> = {
-  'inquiry': 'text-white/30 border-white/10', 'proposal': 'text-blue-400 border-blue-400/30',
-  'in-progress': 'text-kinetic border-kinetic/30', 'review': 'text-yellow-400 border-yellow-400/30',
-  'completed': 'text-green-500 border-green-500/30', 'cancelled': 'text-red-400 border-red-400/30',
-};
+import ResourcePage, { money, StatusBadge, statusTone } from '@/components/admin/ResourcePage';
 
 export default function AdminProjectsPage() {
   return (
-    <div className="admin-page">
-      <div className="admin-page-header">
-        <div>
-          <p className="admin-kicker">[MANAGEMENT]</p>
-          <h1 className="admin-title">PROJECTS</h1>
-        </div>
-        <button className="admin-button">
-          <Plus size={14} /> NEW PROJECT
-        </button>
-      </div>
-
-      <div className="space-y-4">
-        {PROJECTS.map((p) => (
-          <div key={p.title} className="admin-card">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 mb-5">
-              <div className="flex-1">
-                <h3 className="text-sm font-semibold text-white">{p.title}</h3>
-                <p className="font-technical text-[10px] text-white/30 mt-2">CLIENT: {p.client} • BUDGET: {p.budget}</p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className={`admin-badge ${statusColor[p.status] || 'text-white/30 border-white/10'}`}>
-                  {p.status.toUpperCase().replace('-', ' ')}
-                </span>
-                <span className={`admin-badge ${
-                  p.priority === 'urgent' ? 'text-red-400 border-red-400/30' :
-                  p.priority === 'high' ? 'text-kinetic border-kinetic/30' :
-                  'text-white/30 border-white/10'
-                }`}>{p.priority.toUpperCase()}</span>
-                <button className="text-white/20 hover:text-white"><MoreHorizontal size={16} /></button>
-              </div>
-            </div>
-            <div className="w-full h-1.5 bg-white/10 rounded-sm overflow-hidden">
-              <div className={`h-full rounded-sm ${p.status === 'completed' ? 'bg-green-500' : 'bg-kinetic'}`} style={{ width: `${p.progress}%` }} />
-            </div>
-            <p className="font-technical text-[9px] text-white/30 mt-3">{p.progress}% COMPLETE</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <ResourcePage
+      title="Projects"
+      kicker="[MANAGEMENT]"
+      description="Manage portfolio and client projects. Public completed projects automatically appear on the website."
+      listPath="/projects"
+      createPath="/projects"
+      createLabel="New project"
+      getTitle={(project) => project.title}
+      fields={[
+        { name: 'title', label: 'Project title', required: true },
+        { name: 'clientName', label: 'Client name' },
+        { name: 'description', label: 'Description', type: 'textarea', required: true },
+        { name: 'status', label: 'Status', type: 'select', required: true, options: [
+          { label: 'Inquiry', value: 'inquiry' },
+          { label: 'Proposal', value: 'proposal' },
+          { label: 'In progress', value: 'in-progress' },
+          { label: 'Review', value: 'review' },
+          { label: 'Completed', value: 'completed' },
+          { label: 'Cancelled', value: 'cancelled' },
+        ] },
+        { name: 'priority', label: 'Priority', type: 'select', options: [
+          { label: 'Low', value: 'low' },
+          { label: 'Medium', value: 'medium' },
+          { label: 'High', value: 'high' },
+          { label: 'Urgent', value: 'urgent' },
+        ] },
+        { name: 'budget', label: 'Budget', type: 'number' },
+        { name: 'progress', label: 'Progress %', type: 'number' },
+        { name: 'technologies', label: 'Technologies', type: 'tags', helper: 'Comma-separated stack tags.' },
+        { name: 'liveUrl', label: 'Live URL' },
+        { name: 'repositoryUrl', label: 'Repository URL' },
+        { name: 'isPublic', label: 'Show on public website', type: 'checkbox' },
+        { name: 'isFeatured', label: 'Featured project', type: 'checkbox' },
+        { name: 'seo.metaTitle', label: 'SEO title' },
+        { name: 'seo.metaDescription', label: 'SEO description', type: 'textarea' },
+      ]}
+      initialForm={{ status: 'inquiry', priority: 'medium', progress: 0, isPublic: false, isFeatured: false, currency: 'USD' }}
+      mapFormToPayload={(form) => ({
+        ...form,
+        seo: { metaTitle: form['seo.metaTitle'], metaDescription: form['seo.metaDescription'] },
+        currency: 'USD',
+      })}
+      columns={[
+        {
+          label: 'Project',
+          render: (project) => (
+            <>
+              <span className="admin-table-title">{project.title}</span>
+              <span className="admin-table-subtitle">{project.clientName || project.client?.email || 'No client assigned'}</span>
+            </>
+          ),
+        },
+        { label: 'Status', render: (project) => <StatusBadge value={project.status} tone={statusTone(project.status)} /> },
+        { label: 'Priority', render: (project) => <StatusBadge value={project.priority} tone={statusTone(project.priority)} /> },
+        { label: 'Progress', render: (project) => `${project.progress || 0}%` },
+        { label: 'Budget', render: (project) => money(project.budget, project.currency || 'USD') },
+        { label: 'Public', render: (project) => <StatusBadge value={project.isPublic ? 'public' : 'private'} tone={project.isPublic ? 'success' : 'neutral'} /> },
+      ]}
+      filterItem={(project, query) => `${project.title} ${project.clientName || ''} ${project.status}`.toLowerCase().includes(query)}
+    />
   );
 }
