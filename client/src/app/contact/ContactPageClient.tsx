@@ -59,7 +59,7 @@ export default function ContactPageClient() {
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <p className="ko-lead max-w-xl">
+            <p className="ko-lead max-w-xl font-technical">
               Have a project in mind? Fill out the form below and we&apos;ll get back to you within 24 hours.
             </p>
           </RevealOnScroll>
@@ -113,16 +113,17 @@ export default function ContactPageClient() {
                       <option value="brand-systems">Brand Systems</option>
                       <option value="e-commerce">E-Commerce</option>
                       <option value="automation">Automation</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
                   <div>
                     <label className={labelClass}>BUDGET RANGE</label>
                     <select {...register('budget')} className={`${inputClass} appearance-none`}>
                       <option value="">Select budget</option>
-                      <option value="5k-10k">$5,000 – $10,000</option>
-                      <option value="10k-25k">$10,000 – $25,000</option>
-                      <option value="25k-50k">$25,000 – $50,000</option>
-                      <option value="50k+">$50,000+</option>
+                      <option value="5k-10k">INR 5,000 – INR 10,000</option>
+                      <option value="10k-25k">INR 10,000 – INR 25,000</option>
+                      <option value="25k-50k">INR 25,000 – INR 50,000</option>
+                      <option value="50k+">INR 50,000+</option>
                     </select>
                   </div>
                 </div>
@@ -151,28 +152,41 @@ export default function ContactPageClient() {
           {/* Contact Info */}
           <div className="lg:col-span-2">
             <RevealOnScroll delay={0.2}>
-              <div className="space-y-5 md:space-y-6">
+              <div className="space-y-5 md:space-y-6 tracking-normal ">
                 <div className="ko-card">
                   <MapPin className="text-kinetic mb-5" size={24} />
                   <h3 className="font-display text-xl text-white mb-4">OFFICE</h3>
                   <p className="font-body text-white/40 text-sm leading-relaxed">
-                    Kinetic Orange HQ<br/>
-                    Bengaluru, Karnataka<br/>
-                    India 560001
+                    Quantum Code HQ<br/>
+                    Jaipur, Rajasthan <br/>
+                    India
                   </p>
                 </div>
                 <div className="ko-card">
                   <Mail className="text-kinetic mb-5" size={22} />
                   <h3 className="font-display text-xl text-white mb-4">EMAIL</h3>
-                  <a href="mailto:hello@kineticorange.com" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
-                    HELLO@KINETICORANGE.COM
+                  <a href="mailto:debjitghosh2420@gmail.com" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
+                    debjitghosh2420@gmail.com
                   </a>
                 </div>
-                <div className="ko-card">
+                <div className="ko-card mt-5">
                   <Phone className="text-kinetic mb-5" size={22} />
                   <h3 className="font-display text-xl text-white mb-4">PHONE</h3>
-                  <a href="tel:+919876543210" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
-                    +91 98765 43210
+                  <a href="tel:+91 8637385602" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
+                    +91 8637385602
+           
+                  </a>
+                  <br/>
+                  <a href="tel:+91 8942938405" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
+                    
+                    +91 8942938405
+
+                  </a>
+                  <br/>
+                  <a href="tel:+91 9531760624" className="font-technical text-xs text-white/60 hover:text-kinetic transition-colors">
+                    
+                    +91 9531760624
+
                   </a>
                 </div>
               </div>

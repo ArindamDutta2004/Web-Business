@@ -55,7 +55,7 @@ export default function BlogPageClient() {
             </h1>
           </RevealOnScroll>
           <RevealOnScroll delay={0.2}>
-            <p className="ko-lead max-w-xl">
+            <p className="ko-lead max-w-xl font-technical">
               Deep dives into engineering, design, and the future of digital products.
             </p>
           </RevealOnScroll>
