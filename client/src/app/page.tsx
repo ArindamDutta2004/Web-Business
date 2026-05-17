@@ -16,9 +16,9 @@ const SERVICES = [
 ];
 
 const STATS = [
-  { value: '150+', label: 'PROJECTS DELIVERED' },
-  { value: '98%', label: 'CLIENT RETENTION' },
-  { value: '12+', label: 'YEARS EXPERIENCE' },
+  { value: '0+', label: 'PROJECTS DELIVERED' },
+  { value: '0%', label: 'CLIENT RETENTION' },
+  { value: '3+', label: 'YEARS EXPERIENCE' },
   { value: '24/7', label: 'SUPPORT AVAILABLE' },
 ];
 
@@ -79,6 +79,27 @@ function HeroSection() {
         </motion.p>
       </div>
 
+      {/* Top Right Badge */}
+      <motion.div
+        initial={{ opacity: 0, x: 40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.7, duration: 0.7 }}
+        className="absolute top-[95px] right-[60px] z-20 hidden xl:block"
+      >
+        <div className="relative">
+
+          {/* Border Design */}
+          <div className="absolute -top-4 left-0 w-full h-[2px] bg-kinetic" />
+          <div className="absolute -right-4 top-0 w-[2px] h-full bg-kinetic" />
+
+          {/* Text */}
+          <h3 className="font-display text-[48px] leading-[0.9] tracking-tight text-kinetic uppercase">
+            BASED IN INDIA
+          </h3>
+
+        </div>
+      </motion.div>
+
       {/* Divider + Metadata Row */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -86,14 +107,16 @@ function HeroSection() {
         transition={{ delay: 0.8, duration: 0.6 }}
         className="absolute bottom-0 left-0 right-0"
       >
-        <div className="h-[2px] bg-white/10 w-full" />
+
         <div className="ko-container py-5 md:py-6 flex items-center justify-between">
-          <span className="font-technical text-[10px] text-white/40 hidden md:block">BASED IN INDIA</span>
+          <span className="font-technical text-[10px] text-orange-500 hidden md:block">
+
+          </span>
           <div className="mx-auto md:mx-0">
             <ScrollIndicator />
           </div>
           <div className="font-technical text-[10px] text-white/40 text-right leading-relaxed hidden md:block">
-            SOFTWARE ENGINEERS<br />UI/UX ARCHITECTS<br />DIGITAL STRATEGISTS
+
           </div>
         </div>
       </motion.div>
@@ -221,7 +244,7 @@ function AboutPreview() {
         <RevealOnScroll>
           <p className="ko-eyebrow">[WHO WE ARE]</p>
           <h2 className="ko-section-title text-white">
-            NOT YOUR<br/>AVERAGE<br/>
+            NOT YOUR<br />AVERAGE<br />
             <span className="text-kinetic">AGENCY</span>
           </h2>
         </RevealOnScroll>
@@ -258,14 +281,11 @@ function CTASection() {
         <RevealOnScroll>
           <p className="ko-eyebrow mb-8">[LET&apos;S WORK TOGETHER]</p>
           <h2 className="ko-cta-title text-white mb-10 md:mb-12 mx-auto">
-            READY TO BUILD<br/>SOMETHING <span className="text-kinetic">BRUTAL?</span>
+            <span className="text-kinetic">READY TO BUILD<br/>SOMETHING BRUTAL?</span>
           </h2>
-          <Link
-            href="/contact"
-            className="ko-button"
-          >
-            START YOUR PROJECT <ArrowUpRight size={18} />
-          </Link>
+          <h2 className="ko-cta-title text-white mb-10 md:mb-12 mx-auto">
+            BUILT FOR THE FUTURE.
+          </h2>
         </RevealOnScroll>
       </div>
     </section>

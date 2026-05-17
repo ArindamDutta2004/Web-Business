@@ -6,7 +6,7 @@ const User = require('../models/User');
 const Service = require('../models/Service');
 const Settings = require('../models/Settings');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/kinetic-orange';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://duttasanku2004_db_user:zdeFOfcN5z41WhJe@cluster0.cjy8vqs.mongodb.net/?appName=Cluster0';
 
 const seedData = async () => {
   try {

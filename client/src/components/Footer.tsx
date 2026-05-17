@@ -33,13 +33,13 @@ export default function Footer() {
               <span className="text-kinetic">BRUTAL</span>
             </h2>
           </div>
-          <Link
+          {/* <Link
             href="/contact"
             className="ko-button group shrink-0"
           >
             START PROJECT
             <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" size={20} />
-          </Link>
+          </Link> */}
         </div>
       </div>
 
