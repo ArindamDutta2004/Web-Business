@@ -25,7 +25,7 @@ export default function InvoicesAdminPage() {
               <span className="text-sm text-white/60">{inv.client}</span>
             </div>
             <div className="flex flex-wrap items-center gap-4 md:gap-6">
-              <span className="font-display text-sm text-white">{inv.amount}</span>
+              <span className="text-sm font-medium text-white">{inv.amount}</span>
               <span className={`admin-badge ${
                 inv.status === 'paid' ? 'text-green-500 border-green-500/30' :
                 inv.status === 'overdue' ? 'text-red-400 border-red-400/30' :

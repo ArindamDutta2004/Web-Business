@@ -31,7 +31,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-10 md:mb-12">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {STATS.map((stat, i) => (
           <motion.div
             key={stat.label}
@@ -47,13 +47,13 @@ export default function AdminDashboard() {
               </span>
             </div>
             <div className="font-display text-2xl md:text-3xl text-white">{stat.value}</div>
-            <p className="font-technical text-[9px] text-white/30 mt-3 tracking-widest">{stat.label}</p>
+            <p className="font-technical text-[9px] text-white/30 mt-3">{stat.label}</p>
           </motion.div>
         ))}
       </div>
 
       {/* Two Column Layout */}
-      <div className="grid lg:grid-cols-2 gap-5 md:gap-6">
+      <div className="grid lg:grid-cols-2 gap-4">
         {/* Recent Activity */}
         <div className="admin-card">
           <h2 className="admin-section-title mb-6">RECENT ACTIVITY</h2>

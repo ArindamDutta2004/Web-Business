@@ -23,7 +23,7 @@ export default function LeadsPage() {
           <div key={l.email} className="admin-card">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
               <div className="min-w-0">
-                <h3 className="font-display text-sm text-white">{l.name}</h3>
+                <h3 className="text-sm font-semibold text-white">{l.name}</h3>
                 <p className="text-sm text-white/30 mt-2 break-words">{l.email} • {l.service} • {l.budget}</p>
               </div>
               <div className="flex flex-wrap gap-3">

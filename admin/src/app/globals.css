@@ -27,9 +27,9 @@
 
 /* ─── Base Reset ─────────────────────────────────────── */
 :root {
-  --admin-sidebar: 18rem;
+  --admin-sidebar: 15rem;
   --admin-page-x: clamp(1rem, 3vw, 3rem);
-  --admin-card-pad: clamp(1.25rem, 2.4vw, 2rem);
+  --admin-card-pad: clamp(1.1rem, 2vw, 1.75rem);
   --admin-border: 1px solid rgb(255 255 255 / 0.12);
 }
 
@@ -96,7 +96,7 @@ canvas {
 .font-technical {
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
 }
 
 .font-body {
@@ -104,9 +104,7 @@ canvas {
   line-height: 1.65;
 }
 
-.tracking-widest {
-  letter-spacing: 0 !important;
-}
+
 
 /* ─── Shared Admin Layout ────────────────────────────── */
 .admin-page {
@@ -135,9 +133,9 @@ canvas {
 .admin-title {
   color: var(--color-white);
   font-family: var(--font-archivo);
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
   font-weight: 900;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
   line-height: 1.05;
   text-transform: uppercase;
 }
@@ -309,18 +307,12 @@ canvas {
   background: rgb(255 255 255 / 0.03);
 }
 
-@media (min-width: 768px) {
-  .admin-title { font-size: 2.5rem; }
-}
+
 
 @media (max-width: 640px) {
   .admin-page-header {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .admin-title {
-    font-size: 1.85rem;
   }
 
   .admin-button {

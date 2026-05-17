@@ -34,7 +34,7 @@ export default function AdminProjectsPage() {
           <div key={p.title} className="admin-card">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 mb-5">
               <div className="flex-1">
-                <h3 className="font-display text-sm text-white">{p.title}</h3>
+                <h3 className="text-sm font-semibold text-white">{p.title}</h3>
                 <p className="font-technical text-[10px] text-white/30 mt-2">CLIENT: {p.client} • BUDGET: {p.budget}</p>
               </div>
               <div className="flex flex-wrap items-center gap-3">

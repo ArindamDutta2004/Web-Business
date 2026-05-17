@@ -30,7 +30,7 @@ export default function ServicesAdminPage() {
             <div className="flex flex-wrap items-center gap-4 sm:gap-5">
               <GripVertical size={16} className="text-white/10 cursor-grab" />
               <span className="font-technical text-[10px] text-white/20 w-6">#{s.order}</span>
-              <span className="font-display text-sm text-white">{s.title.toUpperCase()}</span>
+              <span className="text-sm font-medium text-white">{s.title.toUpperCase()}</span>
               {s.featured && <span className="admin-badge bg-kinetic text-black border-kinetic">FEATURED</span>}
             </div>
             <div className="flex items-center gap-4 sm:gap-5">

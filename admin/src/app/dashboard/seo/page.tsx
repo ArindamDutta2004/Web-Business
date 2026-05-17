@@ -14,7 +14,7 @@ export default function SEOAdminPage() {
         {['Homepage', 'About', 'Services', 'Projects', 'Blog', 'Contact'].map((page) => (
           <div key={page} className="admin-card flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer">
             <div className="min-w-0">
-              <h3 className="font-display text-sm text-white">{page.toUpperCase()}</h3>
+              <h3 className="text-sm font-semibold text-white">{page.toUpperCase()}</h3>
               <p className="font-technical text-[9px] text-white/30 mt-2">/{page.toLowerCase() === 'homepage' ? '' : page.toLowerCase()}</p>
             </div>
             <span className="admin-badge text-green-500 border-green-500/30">CONFIGURED</span>

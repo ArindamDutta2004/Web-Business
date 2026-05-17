@@ -25,7 +25,7 @@ export default function BlogAdminPage() {
         {POSTS.map((p) => (
           <div key={p.title} className="admin-card flex flex-col md:flex-row md:items-center justify-between gap-5">
             <div className="min-w-0">
-              <h3 className="font-display text-sm text-white">{p.title.toUpperCase()}</h3>
+              <h3 className="text-sm font-semibold text-white">{p.title.toUpperCase()}</h3>
               <div className="flex flex-wrap gap-4 md:gap-5 mt-3">
                 <span className="font-technical text-[9px] text-white/30">{p.category.toUpperCase()}</span>
                 <span className="font-technical text-[9px] text-white/20">{p.date}</span>

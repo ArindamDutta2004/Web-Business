@@ -21,7 +21,7 @@ export default function ContactsPage() {
           <div key={c.email} className={`admin-card cursor-pointer hover:border-kinetic/30 ${c.status === 'new' ? 'border-kinetic/20 bg-kinetic/5' : 'border-white/10'}`}>
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-5 sm:gap-6">
               <div className="min-w-0">
-                <h3 className="font-display text-sm text-white">{c.name}</h3>
+                <h3 className="text-sm font-semibold text-white">{c.name}</h3>
                 <p className="text-sm text-white/40 mt-2">{c.subject}</p>
                 <p className="font-technical text-[10px] text-white/20 mt-3 break-words">{c.email}</p>
               </div>

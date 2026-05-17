@@ -44,7 +44,7 @@ export default function Footer() {
       </div>
 
       {/* Links Grid */}
-      <div>
+      <div className="pt-20">
         <div className="ko-container py-14 md:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
           {/* Brand */}
           <div>

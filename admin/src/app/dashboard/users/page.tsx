@@ -49,7 +49,7 @@ export default function UsersPage() {
           <tbody>
             {USERS.filter((u) => u.name.toLowerCase().includes(search.toLowerCase())).map((user) => (
               <tr key={user.id}>
-                <td className="font-display text-sm text-white">{user.name}</td>
+                <td className="text-sm font-medium text-white">{user.name}</td>
                 <td className="text-sm text-white/50">{user.email}</td>
                 <td><span className="admin-badge text-kinetic border-kinetic/30">{user.role.toUpperCase()}</span></td>
                 <td><span className={`admin-badge ${user.status === 'active' ? 'text-green-500 border-green-500/30' : 'text-white/30 border-white/10'}`}>{user.status.toUpperCase()}</span></td>
